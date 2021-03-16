@@ -3,13 +3,11 @@ package com.codecool.dungeoncrawl.logic.items;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.Drawable;
 
-public class Health implements Drawable{
-    private Cell cell;
+public  class Health extends Booster {
     public Health(Cell cell) {
-        this.cell = cell;
-        this.cell.setHealth(this);
+        super(cell);
+        this.setHealth(1);
     }
-
     @Override
     public String getTileName() {
         return "health";

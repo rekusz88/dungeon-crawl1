@@ -1,31 +1,16 @@
 package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.logic.actors.Actor;
-import com.codecool.dungeoncrawl.logic.items.Health;
-import com.codecool.dungeoncrawl.logic.items.Key;
-import com.codecool.dungeoncrawl.logic.items.Weapon;
+import com.codecool.dungeoncrawl.logic.items.Item;
 
 public class Cell implements Drawable {
     private CellType type;
     private Actor actor;
     private GameMap gameMap;
-    private Weapon weapon;
-    private Health health;
-    private Key key;
-
-    public void setKey(Key key) {
-        this.key = key;
-    }
-
-    public void setHealth(Health health) {
-        this.health = health;
-    }
-
-    public Weapon getWeapon() {
-        return weapon;
-    }
-
+    private Item item;
     private int x, y;
+
+
 
     Cell(GameMap gameMap, int x, int y, CellType type) {
         this.gameMap = gameMap;
@@ -46,12 +31,14 @@ public class Cell implements Drawable {
         this.actor = actor;
     }
 
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
-    }
-
     public Actor getActor() {
         return actor;
+    }
+
+    public Item getItem() { return item; }
+
+    public void setItem(Item item){
+        this.item = item;
     }
 
     public Cell getNeighbor(int dx, int dy) {

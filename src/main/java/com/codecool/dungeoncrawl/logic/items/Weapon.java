@@ -1,13 +1,11 @@
 package com.codecool.dungeoncrawl.logic.items;
 
 import com.codecool.dungeoncrawl.logic.Cell;
-import com.codecool.dungeoncrawl.logic.Drawable;
 
-public class Weapon implements Drawable {
-    private Cell cell;
-    public Weapon(Cell cell) {
-        this.cell = cell;
-        this.cell.setWeapon(this);
+public class Weapon extends Equipments {
+   public Weapon(Cell cell) {
+       super(cell);
+       this.setStrength(10);
     }
 
     @Override
