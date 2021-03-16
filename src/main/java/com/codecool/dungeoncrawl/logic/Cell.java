@@ -1,18 +1,29 @@
 package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.logic.actors.Actor;
+import com.codecool.dungeoncrawl.logic.items.Health;
 import com.codecool.dungeoncrawl.logic.items.Weapon;
 
 public class Cell implements Drawable {
     private CellType type;
     private Actor actor;
     private GameMap gameMap;
+    private Weapon weapon;
+    private Health health;
+
+
+    public void setHealth(Health health) {
+        this.health = health;
+    }
+
+    public Health getHealth() {
+        return health;
+    }
 
     public Weapon getWeapon() {
         return weapon;
     }
 
-    private Weapon weapon;
     private int x, y;
 
     Cell(GameMap gameMap, int x, int y, CellType type) {
