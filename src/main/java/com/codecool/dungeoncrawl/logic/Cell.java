@@ -1,6 +1,8 @@
 package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.logic.actors.Actor;
+import com.codecool.dungeoncrawl.logic.actors.Boss;
+import com.codecool.dungeoncrawl.logic.actors.Npcs;
 
 public class Cell implements Drawable {
     private CellType type;
@@ -18,6 +20,7 @@ public class Cell implements Drawable {
     public boolean isFloor(Cell nextCell){
         return nextCell.getType().equals(CellType.FLOOR);
     }
+
 
     public CellType getType() {
         return type;
