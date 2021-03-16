@@ -35,6 +35,54 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             new Skeleton(cell);
                             break;
+                        case 'x':
+                            cell.setType(CellType.DOOR);
+                            break;
+                        case '-':
+                            cell.setType(CellType.GRASS1);
+                            break;
+                        case ',':
+                            cell.setType(CellType.GRASS2);
+                            break;
+                        case '_':
+                            cell.setType(CellType.GRASS3);
+                            break;
+                        case ':':
+                            cell.setType(CellType.GRASS4);
+                            break;
+                        case 'T':
+                            cell.setType(CellType.TREE1);
+                            break;
+                        case 't':
+                            cell.setType(CellType.TREE2);
+                            break;
+                        case 'Q':
+                            cell.setType(CellType.TREE3);
+                            break;
+                        case '>':
+                            cell.setType(CellType.GRAVE1);
+                            break;
+                        case '<':
+                            cell.setType(CellType.GRAVE2);
+                            break;
+                        case 'C':
+                            cell.setType(CellType.CAT);
+                            break;
+                        case '%':
+                            cell.setType(CellType.WALL1);
+                            break;
+                        case '/':
+                            cell.setType(CellType.WALL2);
+                            break;
+                        case '=':
+                            cell.setType(CellType.WALL3);
+                            break;
+                        case '?':
+                            cell.setType(CellType.WINDOW1);
+                            break;
+                        case '!':
+                            cell.setType(CellType.WINDOW2);
+                            break;
                         case '@':
                             cell.setType(CellType.FLOOR);
                             map.setPlayer(new Player(cell));
