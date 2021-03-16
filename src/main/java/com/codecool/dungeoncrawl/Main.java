@@ -79,6 +79,8 @@ public class Main extends Application {
                 Cell cell = map.getCell(x, y);
                 if (cell.getActor() != null) {
                     Tiles.drawTile(context, cell.getActor(), x, y);
+                } else if (cell.getWeapon() != null) {
+                    Tiles.drawTile(context, cell.getWeapon(), x, y);
                 } else {
                     Tiles.drawTile(context, cell, x, y);
                 }
