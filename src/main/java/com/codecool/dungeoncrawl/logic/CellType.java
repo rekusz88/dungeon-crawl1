@@ -19,7 +19,10 @@ public enum CellType {
     WALL3("wall3"),
     WINDOW1("window1"),
     WINDOW2("window2"),
-    WALL("wall");
+    WALL("wall"),
+    WEAPON("weapon"),
+    HEALTH("health"),
+    KEY("key");
 
     private final String tileName;
 
