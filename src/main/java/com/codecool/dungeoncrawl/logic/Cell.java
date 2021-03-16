@@ -2,6 +2,7 @@ package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.logic.actors.Actor;
 import com.codecool.dungeoncrawl.logic.items.Health;
+import com.codecool.dungeoncrawl.logic.items.Key;
 import com.codecool.dungeoncrawl.logic.items.Weapon;
 
 public class Cell implements Drawable {
@@ -10,14 +11,14 @@ public class Cell implements Drawable {
     private GameMap gameMap;
     private Weapon weapon;
     private Health health;
+    private Key key;
 
+    public void setKey(Key key) {
+        this.key = key;
+    }
 
     public void setHealth(Health health) {
         this.health = health;
-    }
-
-    public Health getHealth() {
-        return health;
     }
 
     public Weapon getWeapon() {
