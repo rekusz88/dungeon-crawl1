@@ -2,13 +2,13 @@ package com.codecool.dungeoncrawl.logic.actors;
 
 import com.codecool.dungeoncrawl.logic.Cell;
 
-public class Skeleton extends Actor {
-    public Skeleton(Cell cell) {
-        super(cell,5,2);
+public class Bat extends Actor{
+    public Bat(Cell cell){
+        super(cell,2,2);
     }
 
     @Override
     public String getTileName() {
-        return "skeleton";
+        return "Bat";
     }
 }
