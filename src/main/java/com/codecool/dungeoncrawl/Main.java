@@ -16,12 +16,13 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    GameMap map = MapLoader.loadMap();
-    Canvas canvas = new Canvas(
-            map.getWidth() * Tiles.TILE_WIDTH,
-            map.getHeight() * Tiles.TILE_WIDTH);
+    Stage stage;
+    GameMap map = loadMap("/outside.txt");
+    Canvas canvas = loadCanvas();
     GraphicsContext context = canvas.getGraphicsContext2D();
     Label healthLabel = new Label();
+    GridPane ui = new GridPane();
+    BorderPane borderPane = new BorderPane();
 
     public static void main(String[] args) {
         launch(args);
@@ -29,51 +30,94 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        GridPane ui = new GridPane();
+        stage = primaryStage;
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
 
         ui.add(new Label("Health: "), 0, 0);
         ui.add(healthLabel, 1, 0);
 
-        BorderPane borderPane = new BorderPane();
-
         borderPane.setCenter(canvas);
         borderPane.setRight(ui);
 
         Scene scene = new Scene(borderPane);
-        primaryStage.setScene(scene);
+        stage.setScene(scene);
         refresh();
         scene.setOnKeyPressed(this::onKeyPressed);
 
-        primaryStage.setTitle("Dungeon Crawl");
-        primaryStage.show();
+        stage.setTitle("Dungeon Crawl");
+        stage.show();
+
     }
 
     private void onKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case UP:
                 map.getPlayer().move(0, -1);
+                if (map.getPlayer().reachedDoor) {
+                    map = loadMap("/inside.txt");
+                    canvas = loadCanvas();
+                }
                 refresh();
                 break;
             case DOWN:
                 map.getPlayer().move(0, 1);
+                if (map.getPlayer().reachedDoor) {
+                    map = loadMap("/inside.txt");
+                    canvas = loadCanvas();
+                }
                 refresh();
                 break;
             case LEFT:
                 map.getPlayer().move(-1, 0);
+                if (map.getPlayer().reachedDoor) {
+                    map = loadMap("/inside.txt");
+                    canvas = loadCanvas();
+                }
                 refresh();
                 break;
             case RIGHT:
                 map.getPlayer().move(1,0);
+                if (map.getPlayer().reachedDoor) {
+                    map = loadMap("/inside.txt");
+                    canvas = loadCanvas();
+                }
                 refresh();
                 break;
             case SPACE:
                 map.getPlayer().pickUpItem();
                 refresh();
                 break;
+            case ENTER:
+                replaceStage();
+
+                refresh();
+                break;
         }
     }
+
+    public GameMap loadMap(String fileName) {
+        return MapLoader.loadMap(fileName);
+    }
+
+    public Canvas loadCanvas() {
+        return new Canvas(
+                map.getWidth() * Tiles.TILE_WIDTH,
+                map.getHeight() * Tiles.TILE_WIDTH);
+    }
+
+    public void replaceStage(){
+
+        borderPane.setCenter(canvas);
+        Scene scene = new Scene(borderPane);
+        stage.setScene(scene);
+        refresh();
+        scene.setOnKeyPressed(this::onKeyPressed);
+
+        stage.setTitle("Dungeon Crawl");
+        stage.show();
+    }
+
 
     private void refresh() {
         context.setFill(Color.BLACK);

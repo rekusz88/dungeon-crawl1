@@ -12,8 +12,8 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 public class MapLoader {
-    public static GameMap loadMap() {
-        InputStream is = MapLoader.class.getResourceAsStream("/map.txt");
+    public static GameMap loadMap(String fileName) {
+        InputStream is = MapLoader.class.getResourceAsStream(fileName);
         Scanner scanner = new Scanner(is);
         int width = scanner.nextInt();
         int height = scanner.nextInt();
@@ -36,6 +36,15 @@ public class MapLoader {
                         case '.':
                             cell.setType(CellType.FLOOR);
                             break;
+                        case '*':
+                            cell.setType(CellType.FLOOR2);
+                            break;
+                        case ';':
+                            cell.setType(CellType.FLOOR3);
+                            break;
+                        case '|':
+                            cell.setType(CellType.FLOOR4);
+                            break;
                         case 's':
                             cell.setType(CellType.FLOOR);
                             new Skeleton(cell);
@@ -49,7 +58,16 @@ public class MapLoader {
                             new Boss(cell);
                             break;
                         case 'x':
-                            cell.setType(CellType.DOOR);
+                            cell.setType(CellType.INSIDE);
+                            break;
+                        case 'X':
+                            cell.setType(CellType.TREASURE);
+                            break;
+                        case 'Y':
+                            cell.setType(CellType.FINAL);
+                            break;
+                        case 'o':
+                            cell.setType(CellType.OPENED);
                             break;
                         case '-':
                             cell.setType(CellType.GRASS1);
@@ -81,6 +99,15 @@ public class MapLoader {
                         case 'C':
                             cell.setType(CellType.CAT);
                             break;
+                        case 'l':
+                            cell.setType(CellType.FRIEND1);
+                            break;
+                        case 'p':
+                            cell.setType(CellType.FRIEND2);
+                            break;
+                        case 'z':
+                            cell.setType(CellType.FRIEND3);
+                            break;
                         case '%':
                             cell.setType(CellType.WALL1);
                             break;
@@ -89,6 +116,12 @@ public class MapLoader {
                             break;
                         case '=':
                             cell.setType(CellType.WALL3);
+                            break;
+                        case '+':
+                            cell.setType(CellType.WALL4);
+                            break;
+                        case 'Z':
+                            cell.setType(CellType.KEY2);
                             break;
                         case '?':
                             cell.setType(CellType.WINDOW1);
@@ -101,15 +134,15 @@ public class MapLoader {
                             map.setPlayer(new Player(cell));
                             break;
                         case 'w':
-                            cell.setType(CellType.FLOOR);
+                            cell.setType(CellType.WEAPON);
                             new Weapon(cell);
                             break;
                         case 'h':
-                            cell.setType(CellType.FLOOR);
+                            cell.setType(CellType.HEALTH);
                             new Health(cell);
                             break;
                         case 'k':
-                            cell.setType(CellType.FLOOR);
+                            cell.setType(CellType.KEY);
                             new Key(cell);
                             break;
                         default:

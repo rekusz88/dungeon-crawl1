@@ -20,7 +20,15 @@ public class Cell implements Drawable {
     }
 
     public boolean isFloor(Cell nextCell){
-        return nextCell.getType().equals(CellType.FLOOR);
+        return nextCell.getType().equals(CellType.FLOOR) || nextCell.getType().equals(CellType.FLOOR2) ||
+                nextCell.getType().equals(CellType.FLOOR3) || nextCell.getType().equals(CellType.FLOOR4) ||
+                nextCell.getType().equals(CellType.GRASS1) || nextCell.getType().equals(CellType.GRASS2) ||
+                nextCell.getType().equals(CellType.GRASS3) || nextCell.getType().equals(CellType.OPENED);
+    }
+
+    public boolean isDoor(Cell nextCell){
+        return nextCell.getType().equals(CellType.INSIDE) || nextCell.getType().equals(CellType.TREASURE) ||
+                nextCell.getType().equals(CellType.FINAL);
     }
 
     public CellType getType() {
