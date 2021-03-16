@@ -44,6 +44,10 @@ public class Tiles {
         tileMap.put("window1", new Tile(1, 13));
         tileMap.put("window2", new Tile(2, 13));
         tileMap.put("cat", new Tile(30, 7));
+        /*
+        tileMap.put("Bat", new tile(3,3));
+        tileMap.put("Boss",new Tile(3,3));
+        */
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {
