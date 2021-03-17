@@ -77,9 +77,11 @@ public class Tiles {
         tileMap.put("Bat", new Tile(26,8));
         tileMap.put("Boss",new Tile(24,7));
 
-        tileMap.put("friend1", new Tile(30, 3));
-        tileMap.put("friend2", new Tile(31, 3));
-        tileMap.put("friend3", new Tile(27, 1));
+        tileMap.put("pistike", new Tile(30, 3));
+        tileMap.put("marcsi", new Tile(31, 3));
+        tileMap.put("laci", new Tile(27, 1));
+
+        tileMap.put("fire3", new Tile(14, 10));
 
     }
 

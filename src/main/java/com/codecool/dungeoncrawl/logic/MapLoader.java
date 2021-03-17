@@ -1,12 +1,10 @@
 package com.codecool.dungeoncrawl.logic;
 
-import com.codecool.dungeoncrawl.logic.actors.Bat;
-import com.codecool.dungeoncrawl.logic.actors.Boss;
-import com.codecool.dungeoncrawl.logic.actors.Player;
-import com.codecool.dungeoncrawl.logic.actors.Skeleton;
-import com.codecool.dungeoncrawl.logic.items.Weapon;
-import com.codecool.dungeoncrawl.logic.items.Key;
-import com.codecool.dungeoncrawl.logic.items.Health;
+import com.codecool.dungeoncrawl.logic.actors.*;
+import com.codecool.dungeoncrawl.logic.items.*;
+import com.codecool.dungeoncrawl.logic.items.Friend1;
+import com.codecool.dungeoncrawl.logic.items.Friend2;
+import com.codecool.dungeoncrawl.logic.items.Friend3;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -125,12 +123,15 @@ public class MapLoader {
 
                         case 'l':
                             cell.setType(CellType.FRIEND1);
+                            new Friend1(cell);
                             break;
                         case 'p':
                             cell.setType(CellType.FRIEND2);
+                            new Friend2(cell);
                             break;
                         case 'z':
                             cell.setType(CellType.FRIEND3);
+                            new Friend3(cell);
                             break;
 
                         case '%':
@@ -165,6 +166,11 @@ public class MapLoader {
                         case 'h':
                             cell.setType(CellType.HEALTH);
                             new Health(cell);
+                            break;
+
+                        case 'J':
+                            cell.setType(CellType.FIRE3);
+                            new Fire(cell);
                             break;
 
                         case 'k':

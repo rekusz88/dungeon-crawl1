@@ -14,9 +14,7 @@ public abstract class Booster extends Item {
         return health;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
-    }
+    public void setHealth(int health) { this.health = health; }
 
     public void useBooster(Player player) {
         player.setHealth(getHealth() + player.getHealth());
