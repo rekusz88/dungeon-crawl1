@@ -39,6 +39,7 @@ public enum CellType {
     WEAPON("weapon"),
     HEALTH("health"),
     FIRE3("fire3"),
+    SHIELD("Hellfire Shield"),
     KEY("key");
 
     private final String tileName;

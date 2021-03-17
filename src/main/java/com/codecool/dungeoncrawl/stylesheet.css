@@ -5,38 +5,19 @@
 
 .label {
     -fx-text-fill: #ada099;
-    -fx-font-size: 16px;
+    -fx-font-size: 15px;
+    -fx-wrap-text: no;
 }
 
 .ui {
     -fx-border-style: solid inside; -fx-border-width: 2;
     -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color: #ada099;
     -fx-background-color: #5a354b;
+    -fx-padding: 3px;
 }
 
 .root {
     -fx-glass-color: rgba(95, 158, 160, 0.9);
-}
-
-.modal-dialog {
-    -fx-padding: 20;
-    -fx-spacing: 10;
-    -fx-alignment: center;
-    -fx-font-size: 20;
-    -fx-border-color: derive(-fx-glass-color, -20%);
-    -fx-border-width: 5;
-    -fx-background-insets: 12;
-    -fx-border-insets: 10;
-    -fx-border-radius: 6;
-    -fx-background-radius: 6;
-}
-
-.modal-dialog:pressed {
-    -fx-cursor: move;
-}
-
-.modal-dialog .button:pressed {
-    -fx-cursor: default;
 }
 
 

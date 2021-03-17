@@ -83,6 +83,7 @@ public class Tiles {
 
         tileMap.put("fire3", new Tile(14, 10));
         tileMap.put("OPBoss", new Tile(30, 6));
+        tileMap.put("Hellfire Shield", new Tile(5, 26));
 
     }
 

@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 import java.io.File;
 
 public class Main extends Application {
-    GameMap map = loadMap("/outside.txt");
+    GameMap map = loadMap("/inside.txt");
     Canvas canvas = new Canvas(
             map.getWidth() * Tiles.TILE_WIDTH,
             map.getHeight() * Tiles.TILE_WIDTH);
@@ -42,16 +42,20 @@ public class Main extends Application {
 
         ui.getStyleClass().add("ui");
         Label health = new Label("Health: ");
+        health.setStyle("-fx-font-size: 20px; -fx-padding: 10px");
+        healthLabel.setStyle("-fx-font-size: 20px; -fx-padding: 10px");
         ui.add(health, 0, 0, 1, 1);
         ui.add(healthLabel, 1, 0, 1, 1);
 
-        Label inventory1 = new Label("Inventory: ");
+        Label inventory1 = new Label("Keys ");
+        inventory1.setStyle("-fx-font-size: 18px; -fx-padding: 3px");
         ui.add(inventory1, 0, 1, 1, 1);
         ui.add(inventoryLabel, 0, 2, 1, 1);
 
-        Label inventory2 = new Label("Inventory: ");
-        ui.add(inventory2, 0, 1, 1, 1);
-        ui.add(inventoryLabel2, 0, 2, 1, 1);
+        Label inventory2 = new Label("Inventory ");
+        inventory2.setStyle("-fx-font-size: 18px; -fx-padding: 3px");
+        ui.add(inventory2, 0, 5, 1, 1);
+        ui.add(inventoryLabel2, 0, 6, 1, 1);
 
         BorderPane borderPane = new BorderPane();
 

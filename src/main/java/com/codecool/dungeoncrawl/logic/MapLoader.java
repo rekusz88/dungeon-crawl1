@@ -163,6 +163,11 @@ public class MapLoader {
                             new OPBoss(cell);
                             break;
 
+                        case 'I':
+                            cell.setType(CellType.SHIELD);
+                            new HellFireShield(cell);
+                            break;
+
                         case 'w':
                             cell.setType(CellType.WEAPON);
                             new Weapon(cell);

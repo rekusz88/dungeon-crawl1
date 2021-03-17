@@ -6,7 +6,7 @@ tT,:TTQQT:ttQtQ-tt%?%%%?%
 :T,tT,-TttQ-.,.,:,%%%%%%%
 QT:ttT_tTT:,>,>_<-%?%%%?%
 Tt-T,TQtTt_,,-,,-:%%%%%%%
-QQT,,Ttt,--,.:.-._%?%%%?%
+QQT,,Ttt,--,@:.-._%?%%%?%
 TT,TtTQ-:,-:<->,>,%%%%%%%
 :-TT,,Tt,,__,--,,-%%%x%%%
 TQQTTt,T............:.Ck:
@@ -17,5 +17,5 @@ TTT,Tttt._,,,>:<-<-,,-_:,
 TQT,TTQT.t:,_<_>-<-,_,,-,
 TtQT-TT-.,--,.:.,.-,:,--,
 ttT-,TtT.,Q__Q,-,:-T,TttT
-@........,_Q,--TTttTTQQtt
+.........,_Q,--TTttTTQQtt
 QQtTT_TttT-TTQQ-:Q_TT,TTt
