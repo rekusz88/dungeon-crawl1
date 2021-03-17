@@ -30,24 +30,20 @@ public abstract class Actor implements Drawable {
 
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        if (nextCell.isFloor(nextCell)) {
+        if (isEnemy(nextCell)) {
+            System.out.println("enemy");
+            fight(enemy);
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
         } else if (nextCell.isDoor(nextCell)) {
             checkWhichDoor(nextCell);
             reachedDoor = true;
-            if(isEnemy(nextCell)){
-                fight(enemy);
-                cell.setActor(null);
-                nextCell.setActor(this);
-                cell = nextCell;
-            }
-            else if (nextCell.isFloor(nextCell)) {
-                cell.setActor(null);
-                nextCell.setActor(this);
-                cell = nextCell;
-            }
+            System.out.println("door");
+        } else if (nextCell.isFloor(nextCell)) {
+            cell.setActor(null);
+            nextCell.setActor(this);
+            cell = nextCell; }
     }
 
     public void fight(Actor enemy){
