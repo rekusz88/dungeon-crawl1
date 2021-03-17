@@ -127,7 +127,7 @@ public class Main extends Application {
                     break;
             }
             retainPlayer(playerBeforeDoor);
-
+            map.getPlayer().takeFromInventory("key");
         }
     }
 

@@ -43,6 +43,10 @@ public class Player extends Actor {
         }
     }
 
+    public void takeFromInventory(String item) {
+        usables.entrySet().removeIf(entry -> item.equalsIgnoreCase(String.valueOf(entry.getKey())));
+    }
+
     public String getTileName() {
         return "player";
     }
