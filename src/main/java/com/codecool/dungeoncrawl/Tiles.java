@@ -82,6 +82,7 @@ public class Tiles {
         tileMap.put("laci", new Tile(27, 1));
 
         tileMap.put("fire3", new Tile(14, 10));
+        tileMap.put("OPBoss", new Tile(30, 6));
 
     }
 

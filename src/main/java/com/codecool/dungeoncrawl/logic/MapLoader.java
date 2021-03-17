@@ -158,6 +158,10 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             map.setPlayer(new Player(cell));
                             break;
+                        case 'N':
+                            cell.setType(CellType.FLOOR);
+                            new OPBoss(cell);
+                            break;
 
                         case 'w':
                             cell.setType(CellType.WEAPON);

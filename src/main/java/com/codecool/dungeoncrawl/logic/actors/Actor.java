@@ -31,7 +31,7 @@ public abstract class Actor implements Drawable {
     }
 
     public boolean isEnemy(Cell nextCell){
-        return Npcs.npcList.stream().anyMatch(npcs -> {
+        return NPC.npcList.stream().anyMatch(npcs -> {
             enemy = npcs;
             return enemy.equals(nextCell.getActor());
         });

@@ -2,8 +2,6 @@ package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.logic.actors.Actor;
 import com.codecool.dungeoncrawl.logic.items.Item;
-import com.codecool.dungeoncrawl.logic.actors.Boss;
-import com.codecool.dungeoncrawl.logic.actors.Npcs;
 
 public class Cell implements Drawable {
     private CellType type;

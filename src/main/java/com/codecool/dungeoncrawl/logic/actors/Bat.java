@@ -2,7 +2,7 @@ package com.codecool.dungeoncrawl.logic.actors;
 
 import com.codecool.dungeoncrawl.logic.Cell;
 
-public class Bat extends Npcs{
+public class Bat extends NPC {
     public Bat(Cell cell){
         super(cell,2,2);
         npcList.add(this);

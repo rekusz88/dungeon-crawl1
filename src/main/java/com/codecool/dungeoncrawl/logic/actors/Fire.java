@@ -2,7 +2,7 @@ package com.codecool.dungeoncrawl.logic.actors;
 
 import com.codecool.dungeoncrawl.logic.Cell;
 
-public class Fire extends Npcs{
+public class Fire extends NPC {
     public Fire(Cell cell){
         super(cell,1,1);
         npcList.add(this);
