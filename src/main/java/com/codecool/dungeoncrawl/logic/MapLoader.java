@@ -33,6 +33,7 @@ public class MapLoader {
                         case '#':
                             cell.setType(CellType.WALL);
                             break;
+
                         case '.':
                             cell.setType(CellType.FLOOR);
                             break;
@@ -45,6 +46,7 @@ public class MapLoader {
                         case '|':
                             cell.setType(CellType.FLOOR4);
                             break;
+
                         case 's':
                             cell.setType(CellType.FLOOR);
                             new Skeleton(cell);
@@ -57,21 +59,29 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             new Boss(cell);
                             break;
+
                         case 'x':
                             cell.setType(CellType.INSIDE);
-                            break;
-                        case 'A':
-                            cell.setType(CellType.OUTSIDE);
                             break;
                         case 'X':
                             cell.setType(CellType.TREASURE);
                             break;
+                        case 'O':
+                            cell.setType(CellType.BACK_INSIDE);
+                            break;
+                        case 'E':
+                            cell.setType(CellType.INSIDE2);
+                            break;
                         case 'Y':
                             cell.setType(CellType.FINAL);
+                            break;
+                        case 'A':
+                            cell.setType(CellType.OUTSIDE);
                             break;
                         case 'o':
                             cell.setType(CellType.OPENED);
                             break;
+
                         case '-':
                             cell.setType(CellType.GRASS1);
                             break;
@@ -84,6 +94,14 @@ public class MapLoader {
                         case ':':
                             cell.setType(CellType.GRASS4);
                             break;
+
+                        case 'R':
+                            cell.setType(CellType.FIRE);
+                            break;
+                        case 'r':
+                            cell.setType(CellType.FIRE2);
+                            break;
+
                         case 'T':
                             cell.setType(CellType.TREE1);
                             break;
@@ -93,15 +111,18 @@ public class MapLoader {
                         case 'Q':
                             cell.setType(CellType.TREE3);
                             break;
+
                         case '>':
                             cell.setType(CellType.GRAVE1);
                             break;
                         case '<':
                             cell.setType(CellType.GRAVE2);
                             break;
+
                         case 'C':
                             cell.setType(CellType.CAT);
                             break;
+
                         case 'l':
                             cell.setType(CellType.FRIEND1);
                             break;
@@ -111,6 +132,7 @@ public class MapLoader {
                         case 'z':
                             cell.setType(CellType.FRIEND3);
                             break;
+
                         case '%':
                             cell.setType(CellType.WALL1);
                             break;
@@ -123,19 +145,19 @@ public class MapLoader {
                         case '+':
                             cell.setType(CellType.WALL4);
                             break;
-                        case 'Z':
-                            cell.setType(CellType.KEY2);
-                            break;
+
                         case '?':
                             cell.setType(CellType.WINDOW1);
                             break;
                         case '!':
                             cell.setType(CellType.WINDOW2);
                             break;
+
                         case '@':
                             cell.setType(CellType.FLOOR);
                             map.setPlayer(new Player(cell));
                             break;
+
                         case 'w':
                             cell.setType(CellType.WEAPON);
                             new Weapon(cell);
@@ -144,9 +166,13 @@ public class MapLoader {
                             cell.setType(CellType.HEALTH);
                             new Health(cell);
                             break;
+
                         case 'k':
                             cell.setType(CellType.KEY);
                             new Key(cell);
+                            break;
+                        case 'Z':
+                            cell.setType(CellType.KEY2);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");

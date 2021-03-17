@@ -36,8 +36,14 @@ public abstract class Actor implements Drawable {
             doorName = "door1";
         } else if (nextCell.getType().equals(CellType.TREASURE)) {
             doorName = "door2";
-        } else if (nextCell.getType().equals(CellType.FINAL)) {
+        } else if (nextCell.getType().equals(CellType.BACK_INSIDE)) {
             doorName = "door3";
+        } else if (nextCell.getType().equals(CellType.INSIDE2)) {
+            doorName = "door4";
+        } else if (nextCell.getType().equals(CellType.FINAL)) {
+            doorName = "door5";
+        } else if (nextCell.getType().equals(CellType.OUTSIDE)) {
+            doorName = "door6";
         }
     }
 

@@ -14,11 +14,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import java.io.File;
 
 public class Main extends Application {
-    Stage stage;
     GameMap map = loadMap("/outside.txt");
-    Canvas canvas = loadCanvas(map);
+    Canvas canvas = new Canvas(
+            map.getWidth() * Tiles.TILE_WIDTH,
+            map.getHeight() * Tiles.TILE_WIDTH);
     GraphicsContext context = canvas.getGraphicsContext2D();
     Label healthLabel = new Label();
 
@@ -28,31 +30,29 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         GridPane ui = new GridPane();
-        BorderPane borderPane = new BorderPane();
-//        stage = primaryStage;
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
 
-        ui.add(new Label("Health: "), 0, 0);
+        Label health = new Label("Health: ");
+        ui.add(health, 0, 0);
         ui.add(healthLabel, 1, 0);
+        health.setStyle("-fx-text-fill: #ada099;");
+        healthLabel.setStyle("-fx-text-fill: #ada099;");
 
+        ui.setStyle(" -fx-font-size: 26px;" +
+                " -fx-border-style: solid inside; -fx-border-width: 2;" +
+                " -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color: #ada099;");
+
+        BorderPane borderPane = new BorderPane();
 
         borderPane.setCenter(canvas);
         borderPane.setRight(ui);
 
-        Scene scene = new Scene(borderPane);
+        File f = new File("src/main/java/com/codecool/dungeoncrawl/stylesheet.css");
+        borderPane.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
 
-//        GameMap map1 = loadMap("/inside.txt");
-//        Canvas canvas1 = loadCanvas(map1);
-//        BorderPane borderPane1 = new BorderPane();
-//        borderPane1.setCenter(canvas1);
-//        borderPane1.setRight(ui);
-//        Scene scene1 = new Scene(borderPane1);
-//        if (map.getPlayer().reachedDoor) {
-//            primaryStage.setScene(scene1);
-//        }
+        Scene scene = new Scene(borderPane);
         primaryStage.setScene(scene);
         refresh();
         scene.setOnKeyPressed(this::onKeyPressed);
@@ -105,10 +105,16 @@ public class Main extends Application {
                     map = loadMap("/treasure_room.txt");
                     break;
                 case "door3":
-                    map = loadMap("/boss_romm.txt");
+                    map = loadMap("/back_inside.txt");
                     break;
                 case "door4":
-                    map = loadMap("/outside.txt");
+                    map = loadMap("/inside2.txt");
+                    break;
+                case "door5":
+                    map = loadMap("/boss_room.txt");
+                    break;
+                case "door6":
+                    map = loadMap("/outside2.txt");
                     break;
             }
         }
