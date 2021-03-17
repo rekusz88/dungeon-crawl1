@@ -1,10 +1,22 @@
 package com.codecool.dungeoncrawl.logic.actors;
 
+import com.codecool.dungeoncrawl.Main;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.Drawable;
 import com.codecool.dungeoncrawl.logic.items.Item;
 import com.codecool.dungeoncrawl.logic.items.Key;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.awt.*;
+import java.util.Optional;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
@@ -67,7 +79,8 @@ public abstract class Actor implements Drawable {
             if(enemy.health <= 0){
                 break;
             } else if (this.health <= 0){
-                System.out.println("You died!");    // could implement loosing screen
+                System.out.println("You died!");
+                modal("GAME OVER");
                 break;
             }
         }
@@ -86,6 +99,28 @@ public abstract class Actor implements Drawable {
             doorName = "door5";
         } else if (nextCell.getType().equals(CellType.OUTSIDE)) {
             doorName = "door6";
+        }
+    }
+
+    public void modal(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(message);
+        alert.setContentText("Would you like to start over?");
+        ButtonType restart = new ButtonType("hogy a viharba ne");
+        ButtonType exit = new ButtonType("nah", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(restart, exit);
+        alert.initStyle(StageStyle.UTILITY);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == exit){
+            Platform.exit();
+        } else {
+            Main.getStage().close();
+            Platform.runLater( () -> { try {
+                    new Main().start( new Stage() );
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
         }
     }
 

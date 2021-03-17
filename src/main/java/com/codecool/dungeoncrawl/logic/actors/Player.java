@@ -44,6 +44,14 @@ public class Player extends Actor {
     }
 
     public void takeFromInventory(String item) {
+//        Iterator<Map.Entry<Usable,Integer>> iter = usables.entrySet().iterator();
+//        while (iter.hasNext()) {
+//            Map.Entry<Usable,Integer> entry = iter.next();
+//            if(item.equalsIgnoreCase(String.valueOf(entry.getKey()))){
+//                iter.remove();
+//                break;
+//            }
+//        }
         usables.entrySet().removeIf(entry -> item.equalsIgnoreCase(String.valueOf(entry.getKey())));
     }
 

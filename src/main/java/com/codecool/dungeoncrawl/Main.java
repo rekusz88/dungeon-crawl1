@@ -28,6 +28,9 @@ public class Main extends Application {
     Label healthLabel = new Label();
     Label inventoryLabel = new Label();
     Label inventoryLabel2 = new Label();
+    private static Stage stage;
+
+    public static Stage getStage() { return stage; }
 
     public static void main(String[] args) {
         launch(args);
@@ -35,6 +38,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         GridPane ui = new GridPane();
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
@@ -67,7 +71,7 @@ public class Main extends Application {
 
         primaryStage.setTitle("Dungeon Crawl");
         primaryStage.show();
-
+        stage = primaryStage;
     }
 
     private void onKeyPressed(KeyEvent keyEvent) {
