@@ -7,6 +7,8 @@ public abstract class Actor implements Drawable {
     private Cell cell;
     private int health;
     private int attack;
+    private Actor enemy;
+
 
     public Actor(Cell cell,int health,int attack) {
         this.health=health;
@@ -15,14 +17,50 @@ public abstract class Actor implements Drawable {
         this.cell.setActor(this);
     }
 
+    public boolean isEnemy(Cell nextCell){
+        return Npcs.npcList.stream().anyMatch(npcs -> {
+            enemy = npcs;
+            return enemy.equals(nextCell.getActor());
+        });
+    }
+
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        if (nextCell.isFloor(nextCell)) {
-            cell.setActor(null);
-            nextCell.setActor(this);
-            cell = nextCell;
+            if(isEnemy(nextCell)){
+                fight(enemy);
+                cell.setActor(null);
+                nextCell.setActor(this);
+                cell = nextCell;
+            }
+            else if (nextCell.isFloor(nextCell)) {
+                cell.setActor(null);
+                nextCell.setActor(this);
+                cell = nextCell;
+            }
+    }
+
+    public void fight(Actor enemy){
+        while(!isDead(this) || !isDead(enemy)){
+            strike(this ,enemy);
+            strike(enemy,this);
+            if(enemy.health <= 0){
+                break;
+            }
+            else if (this.health <= 0){
+                System.out.println("You died!");    // could implement loosing screen
+                break;
+            }
         }
     }
+
+    private boolean isDead(Actor actor) {
+        return actor.getHealth() <= 0;
+    }
+
+    private void strike(Actor actor, Actor actor2) {
+        actor2.health -= actor.attack;
+    }
+
 
     public int getHealth() {
         return health;

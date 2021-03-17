@@ -2,9 +2,10 @@ package com.codecool.dungeoncrawl.logic.actors;
 
 import com.codecool.dungeoncrawl.logic.Cell;
 
-public class Skeleton extends Actor {
+public class Skeleton extends Npcs {
     public Skeleton(Cell cell) {
-        super(cell,5,2);
+        super(cell,6,1);
+        npcList.add(this);
     }
 
     @Override
