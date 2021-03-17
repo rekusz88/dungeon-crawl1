@@ -4,18 +4,12 @@ import com.codecool.dungeoncrawl.Main;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.Drawable;
-import com.codecool.dungeoncrawl.logic.items.Item;
-import com.codecool.dungeoncrawl.logic.items.Key;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-import java.awt.*;
 import java.util.Optional;
 
 public abstract class Actor implements Drawable {
@@ -46,7 +40,6 @@ public abstract class Actor implements Drawable {
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
         if (isEnemy(nextCell)) {
-            System.out.println("enemy");
             fight(enemy);
             cell.setActor(null);
             nextCell.setActor(this);
@@ -79,7 +72,6 @@ public abstract class Actor implements Drawable {
             if(enemy.health <= 0){
                 break;
             } else if (this.health <= 0){
-                System.out.println("You died!");
                 modal("GAME OVER");
                 break;
             }

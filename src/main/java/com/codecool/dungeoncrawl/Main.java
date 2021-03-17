@@ -4,7 +4,6 @@ import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 import com.codecool.dungeoncrawl.logic.actors.Player;
-import com.codecool.dungeoncrawl.logic.items.Usable;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -17,7 +16,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.File;
-import java.util.Map;
 
 public class Main extends Application {
     GameMap map = loadMap("/outside.txt");
@@ -29,7 +27,6 @@ public class Main extends Application {
     Label inventoryLabel = new Label();
     Label inventoryLabel2 = new Label();
     private static Stage stage;
-
     public static Stage getStage() { return stage; }
 
     public static void main(String[] args) {
