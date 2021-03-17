@@ -18,11 +18,9 @@ import javafx.stage.Stage;
 public class Main extends Application {
     Stage stage;
     GameMap map = loadMap("/outside.txt");
-    Canvas canvas = loadCanvas();
+    Canvas canvas = loadCanvas(map);
     GraphicsContext context = canvas.getGraphicsContext2D();
     Label healthLabel = new Label();
-    GridPane ui = new GridPane();
-    BorderPane borderPane = new BorderPane();
 
     public static void main(String[] args) {
         launch(args);
@@ -30,23 +28,37 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        stage = primaryStage;
+
+        GridPane ui = new GridPane();
+        BorderPane borderPane = new BorderPane();
+//        stage = primaryStage;
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
 
         ui.add(new Label("Health: "), 0, 0);
         ui.add(healthLabel, 1, 0);
 
+
         borderPane.setCenter(canvas);
         borderPane.setRight(ui);
 
         Scene scene = new Scene(borderPane);
-        stage.setScene(scene);
+
+//        GameMap map1 = loadMap("/inside.txt");
+//        Canvas canvas1 = loadCanvas(map1);
+//        BorderPane borderPane1 = new BorderPane();
+//        borderPane1.setCenter(canvas1);
+//        borderPane1.setRight(ui);
+//        Scene scene1 = new Scene(borderPane1);
+//        if (map.getPlayer().reachedDoor) {
+//            primaryStage.setScene(scene1);
+//        }
+        primaryStage.setScene(scene);
         refresh();
         scene.setOnKeyPressed(this::onKeyPressed);
 
-        stage.setTitle("Dungeon Crawl");
-        stage.show();
+        primaryStage.setTitle("Dungeon Crawl");
+        primaryStage.show();
 
     }
 
@@ -54,43 +66,26 @@ public class Main extends Application {
         switch (keyEvent.getCode()) {
             case UP:
                 map.getPlayer().move(0, -1);
-                if (map.getPlayer().reachedDoor) {
-                    map = loadMap("/inside.txt");
-                    canvas = loadCanvas();
-                }
+                changeMap();
                 refresh();
                 break;
             case DOWN:
                 map.getPlayer().move(0, 1);
-                if (map.getPlayer().reachedDoor) {
-                    map = loadMap("/inside.txt");
-                    canvas = loadCanvas();
-                }
+                changeMap();
                 refresh();
                 break;
             case LEFT:
                 map.getPlayer().move(-1, 0);
-                if (map.getPlayer().reachedDoor) {
-                    map = loadMap("/inside.txt");
-                    canvas = loadCanvas();
-                }
+                changeMap();
                 refresh();
                 break;
             case RIGHT:
                 map.getPlayer().move(1,0);
-                if (map.getPlayer().reachedDoor) {
-                    map = loadMap("/inside.txt");
-                    canvas = loadCanvas();
-                }
+                changeMap();
                 refresh();
                 break;
             case SPACE:
                 map.getPlayer().pickUpItem();
-                refresh();
-                break;
-            case ENTER:
-                replaceStage();
-
                 refresh();
                 break;
         }
@@ -100,22 +95,23 @@ public class Main extends Application {
         return MapLoader.loadMap(fileName);
     }
 
-    public Canvas loadCanvas() {
-        return new Canvas(
-                map.getWidth() * Tiles.TILE_WIDTH,
-                map.getHeight() * Tiles.TILE_WIDTH);
-    }
-
-    public void replaceStage(){
-
-        borderPane.setCenter(canvas);
-        Scene scene = new Scene(borderPane);
-        stage.setScene(scene);
-        refresh();
-        scene.setOnKeyPressed(this::onKeyPressed);
-
-        stage.setTitle("Dungeon Crawl");
-        stage.show();
+    public void changeMap() {
+        if (map.getPlayer().reachedDoor) {
+            switch (map.getPlayer().doorName) {
+                case "door1":
+                    map = loadMap("/inside.txt");
+                    break;
+                case "door2":
+                    map = loadMap("/treasure_room.txt");
+                    break;
+                case "door3":
+                    map = loadMap("/boss_romm.txt");
+                    break;
+                case "door4":
+                    map = loadMap("/outside.txt");
+                    break;
+            }
+        }
     }
 
 

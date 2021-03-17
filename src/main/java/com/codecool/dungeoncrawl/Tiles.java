@@ -36,6 +36,7 @@ public class Tiles {
         tileMap.put("key2", new Tile(18, 23));
         tileMap.put("inside", new Tile(6, 10));
         tileMap.put("treasure", new Tile(6, 10));
+        tileMap.put("outside", new Tile(6, 10));
         tileMap.put("final", new Tile(6, 10));
         tileMap.put("opened", new Tile(8, 10));
         tileMap.put("grass1", new Tile(5, 0));

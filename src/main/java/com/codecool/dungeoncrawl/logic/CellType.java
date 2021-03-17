@@ -7,6 +7,7 @@ public enum CellType {
     FLOOR3("floor3"),
     FLOOR4("floor4"),
     INSIDE("inside"),
+    OUTSIDE("outside"),
     TREASURE("treasure"),
     FINAL("final"),
     OPENED("opened"),

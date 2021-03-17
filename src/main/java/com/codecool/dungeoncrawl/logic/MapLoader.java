@@ -60,6 +60,9 @@ public class MapLoader {
                         case 'x':
                             cell.setType(CellType.INSIDE);
                             break;
+                        case 'A':
+                            cell.setType(CellType.OUTSIDE);
+                            break;
                         case 'X':
                             cell.setType(CellType.TREASURE);
                             break;
