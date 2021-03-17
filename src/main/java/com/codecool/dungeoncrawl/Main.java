@@ -3,6 +3,8 @@ package com.codecool.dungeoncrawl;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
+import com.codecool.dungeoncrawl.logic.actors.Player;
+import com.codecool.dungeoncrawl.logic.items.Usable;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -15,6 +17,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.File;
+import java.util.Map;
 
 public class Main extends Application {
     GameMap map = loadMap("/outside.txt");
@@ -36,21 +39,26 @@ public class Main extends Application {
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
 
-        ui.add(new Label("Health: "), 0, 0, 1, 1);
+        ui.getStyleClass().add("ui");
+        Label health = new Label("Health: ");
+        ui.add(health, 0, 0, 1, 1);
         ui.add(healthLabel, 1, 0, 1, 1);
+//        health.setStyle("-fx-text-fill: #ada099;");
 
-        ui.add(new Label("Inventory: "), 0, 1, 1, 1);
+        Label inventory1 = new Label("Inventory: ");
+        ui.add(inventory1, 0, 1, 1, 1);
         ui.add(inventoryLabel, 0, 2, 1, 1);
+//        inventory1.setStyle("-fx-text-fill: #ada099;");
 
-        ui.add(new Label("Inventory: "), 0, 1, 1, 1);
+        Label inventory2 = new Label("Inventory: ");
+        ui.add(inventory2, 0, 1, 1, 1);
         ui.add(inventoryLabel2, 0, 2, 1, 1);
+//        inventory2.setStyle("-fx-text-fill: #ada099;");
 
-        healthLabel.setStyle("-fx-text-fill: #ada099;");
+//        healthLabel.setStyle("-fx-text-fill: #ada099;");
 
-        ui.setStyle(" -fx-font-size: 26px;" +
-                " -fx-border-style: solid inside; -fx-border-width: 2;" +
-                " -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color: #ada099;");
-
+//        ui.setStyle(" -fx-border-style: solid inside; -fx-border-width: 2;" +
+//                " -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color: #ada099;");
 
         BorderPane borderPane = new BorderPane();
 
@@ -105,6 +113,7 @@ public class Main extends Application {
 
     public void changeMap() {
         if (map.getPlayer().reachedDoor) {
+            Player playerBeforeDoor = map.getPlayer();
             switch (map.getPlayer().doorName) {
                 case "door1":
                     map = loadMap("/inside.txt");
@@ -125,6 +134,7 @@ public class Main extends Application {
                     map = loadMap("/outside2.txt");
                     break;
             }
+            retainPlayer(playerBeforeDoor);
         }
     }
 
@@ -147,5 +157,10 @@ public class Main extends Application {
         healthLabel.setText("" + map.getPlayer().getHealth());
         inventoryLabel.setText("" + map.getPlayer().getInventoryItem(map.getPlayer().getUsables()));
         inventoryLabel2.setText("\n" +"" + map.getPlayer().getInventoryItem(map.getPlayer().getEquipments()));
+    }
+
+    public void retainPlayer(Player playerBeforeDoor) {
+        map.getPlayer().setHealth(playerBeforeDoor.getHealth());
+//        do to with usable and equipment
     }
 }

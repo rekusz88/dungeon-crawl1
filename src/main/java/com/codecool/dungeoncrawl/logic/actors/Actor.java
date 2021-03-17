@@ -10,7 +10,6 @@ public abstract class Actor implements Drawable {
     private int attack;
     public boolean reachedDoor;
     public String doorName;
-
     private Actor enemy;
 
 
@@ -28,30 +27,30 @@ public abstract class Actor implements Drawable {
         });
     }
 
-//    public void move(int dx, int dy) {
-//        Cell nextCell = cell.getNeighbor(dx, dy);
-//        if (isEnemy(nextCell)) {
-//            System.out.println("enemy");
-//            fight(enemy);
-//            cell.setActor(null);
-//            nextCell.setActor(this);
-//            cell = nextCell;
-//        } else if (nextCell.isDoor(nextCell)) {
-//            checkWhichDoor(nextCell);
-//            reachedDoor = true;
-//            System.out.println("door");
-//        } else if (nextCell.isFloor(nextCell)) {
-//            cell.setActor(null);
-//            nextCell.setActor(this);
-//            cell = nextCell; }
-//    }
-
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        cell.setActor(null);
-        nextCell.setActor(this);
-        cell = nextCell;
+        if (isEnemy(nextCell)) {
+            System.out.println("enemy");
+            fight(enemy);
+            cell.setActor(null);
+            nextCell.setActor(this);
+            cell = nextCell;
+        } else if (nextCell.isDoor(nextCell)) {
+            checkWhichDoor(nextCell);
+            reachedDoor = true;
+            System.out.println("door");
+        } else if (nextCell.isFloor(nextCell)) {
+            cell.setActor(null);
+            nextCell.setActor(this);
+            cell = nextCell; }
     }
+
+//    public void move(int dx, int dy) {
+//        Cell nextCell = cell.getNeighbor(dx, dy);
+//        cell.setActor(null);
+//        nextCell.setActor(this);
+//        cell = nextCell;
+//    }
 
     public void fight(Actor enemy){
         while(!isDead(this) || !isDead(enemy)){

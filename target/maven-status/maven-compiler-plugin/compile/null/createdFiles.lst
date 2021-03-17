@@ -1,7 +1,7 @@
-com/codecool/dungeoncrawl/Tiles.class
-com/codecool/dungeoncrawl/logic/actors/Boss.class
-com/codecool/dungeoncrawl/Main.class
-com/codecool/dungeoncrawl/logic/actors/Skeleton.class
-com/codecool/dungeoncrawl/logic/actors/Npcs.class
-com/codecool/dungeoncrawl/logic/actors/Bat.class
-com/codecool/dungeoncrawl/Main$1.class
+com\codecool\dungeoncrawl\Tiles.class
+com\codecool\dungeoncrawl\logic\actors\Bat.class
+com\codecool\dungeoncrawl\logic\actors\Boss.class
+com\codecool\dungeoncrawl\Main$1.class
+com\codecool\dungeoncrawl\Main.class
+com\codecool\dungeoncrawl\logic\actors\Skeleton.class
+com\codecool\dungeoncrawl\logic\actors\Npcs.class
