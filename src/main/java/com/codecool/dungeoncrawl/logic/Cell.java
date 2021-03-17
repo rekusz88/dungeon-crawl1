@@ -34,6 +34,11 @@ public class Cell implements Drawable {
                 nextCell.getType().equals(CellType.FINAL) || nextCell.getType().equals(CellType.OUTSIDE);
     }
 
+    public boolean isInventory(Cell nextCell){
+        return nextCell.getType().equals(CellType.WEAPON) || nextCell.getType().equals(CellType.HEALTH) ||
+                nextCell.getType().equals(CellType.KEY) || nextCell.getType().equals(CellType.KEY2);
+    }
+
 
     public CellType getType() {
         return type;

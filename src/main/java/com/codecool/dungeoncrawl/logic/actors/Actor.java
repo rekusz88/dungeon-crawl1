@@ -3,6 +3,7 @@ package com.codecool.dungeoncrawl.logic.actors;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.Drawable;
+import com.codecool.dungeoncrawl.logic.items.Item;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
@@ -27,6 +28,24 @@ public abstract class Actor implements Drawable {
         });
     }
 
+//    public void move(int dx, int dy) {
+//        Cell nextCell = cell.getNeighbor(dx, dy);
+//        if (isEnemy(nextCell)) {
+//            System.out.println("enemy");
+//            fight(enemy);
+//            cell.setActor(null);
+//            nextCell.setActor(this);
+//            cell = nextCell;
+//        } else if (nextCell.isDoor(nextCell)) {
+//            checkWhichDoor(nextCell);
+//            reachedDoor = true;
+//            System.out.println("door");
+//        } else if (nextCell.isFloor(nextCell)) {
+//            cell.setActor(null);
+//            nextCell.setActor(this);
+//            cell = nextCell; }
+//    }
+
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
         if (isEnemy(nextCell)) {
@@ -42,15 +61,14 @@ public abstract class Actor implements Drawable {
         } else if (nextCell.isFloor(nextCell)) {
             cell.setActor(null);
             nextCell.setActor(this);
-            cell = nextCell; }
-    }
+            cell = nextCell;
+        }else if (nextCell.isInventory(nextCell)){
+            cell.setActor(null);
+            nextCell.setActor(this);
+            cell = nextCell;
+        }
+   }
 
-//    public void move(int dx, int dy) {
-//        Cell nextCell = cell.getNeighbor(dx, dy);
-//        cell.setActor(null);
-//        nextCell.setActor(this);
-//        cell = nextCell;
-//    }
 
     public void fight(Actor enemy){
         while(!isDead(this) || !isDead(enemy)){
