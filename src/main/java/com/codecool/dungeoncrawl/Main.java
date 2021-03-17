@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 import java.io.File;
 
 public class Main extends Application {
-    GameMap map = loadMap("/inside.txt");
+    GameMap map = loadMap("/outside.txt");
     Canvas canvas = new Canvas(
             map.getWidth() * Tiles.TILE_WIDTH,
             map.getHeight() * Tiles.TILE_WIDTH);
