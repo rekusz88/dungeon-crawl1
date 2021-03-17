@@ -109,24 +109,31 @@ public class Main extends Application {
             switch (map.getPlayer().doorName) {
                 case "door1":
                     map = loadMap("/inside.txt");
+                    retainPlayer(playerBeforeDoor);
                     break;
                 case "door2":
                     map = loadMap("/treasure_room.txt");
+                    retainPlayer(playerBeforeDoor);
+                    map.getPlayer().addKey();
                     break;
                 case "door3":
                     map = loadMap("/back_inside.txt");
+                    retainPlayer(playerBeforeDoor);
                     break;
                 case "door4":
                     map = loadMap("/inside2.txt");
+                    retainPlayer(playerBeforeDoor);
                     break;
                 case "door5":
                     map = loadMap("/boss_room.txt");
+                    retainPlayer(playerBeforeDoor);
                     break;
                 case "door6":
                     map = loadMap("/outside2.txt");
+                    retainPlayer(playerBeforeDoor);
+                    map.getPlayer().addKey();
                     break;
             }
-            retainPlayer(playerBeforeDoor);
             map.getPlayer().takeFromInventory("key");
         }
     }
