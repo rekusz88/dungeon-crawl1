@@ -161,6 +161,7 @@ public class Main extends Application {
 
     public void retainPlayer(Player playerBeforeDoor) {
         map.getPlayer().setHealth(playerBeforeDoor.getHealth());
-//        do to with usable and equipment
+        map.getPlayer().setUsables(playerBeforeDoor.getUsables());
+        map.getPlayer().setEquipments(playerBeforeDoor.getEquipments());
     }
 }

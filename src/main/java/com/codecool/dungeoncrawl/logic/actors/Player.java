@@ -58,6 +58,14 @@ public class Player extends Actor {
         return usables;
     }
 
+    public void setUsables(Map<Usable, Integer> usables){
+        this.usables = usables;
+    }
+
+    public void setEquipments(Map<Equipments, Integer> equipments){
+        this.equipments = equipments;
+    }
+
     public <K> String getInventoryItem(Map<K, Integer> inventory) {
         StringBuilder sb = new StringBuilder();
         for (K key : inventory.keySet()) {
