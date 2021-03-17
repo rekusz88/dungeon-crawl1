@@ -23,6 +23,8 @@ public class Main extends Application {
             map.getHeight() * Tiles.TILE_WIDTH);
     GraphicsContext context = canvas.getGraphicsContext2D();
     Label healthLabel = new Label();
+    Label inventoryLabel = new Label();
+    Label inventoryLabel2 = new Label();
 
     public static void main(String[] args) {
         launch(args);
@@ -34,15 +36,21 @@ public class Main extends Application {
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
 
-        Label health = new Label("Health: ");
-        ui.add(health, 0, 0);
-        ui.add(healthLabel, 1, 0);
-        health.setStyle("-fx-text-fill: #ada099;");
+        ui.add(new Label("Health: "), 0, 0, 1, 1);
+        ui.add(healthLabel, 1, 0, 1, 1);
+
+        ui.add(new Label("Inventory: "), 0, 1, 1, 1);
+        ui.add(inventoryLabel, 0, 2, 1, 1);
+
+        ui.add(new Label("Inventory: "), 0, 1, 1, 1);
+        ui.add(inventoryLabel2, 0, 2, 1, 1);
+
         healthLabel.setStyle("-fx-text-fill: #ada099;");
 
         ui.setStyle(" -fx-font-size: 26px;" +
                 " -fx-border-style: solid inside; -fx-border-width: 2;" +
                 " -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color: #ada099;");
+
 
         BorderPane borderPane = new BorderPane();
 
@@ -137,5 +145,7 @@ public class Main extends Application {
             }
         }
         healthLabel.setText("" + map.getPlayer().getHealth());
+        inventoryLabel.setText("" + map.getPlayer().getInventoryItem(map.getPlayer().getUsables()));
+        inventoryLabel2.setText("\n" +"" + map.getPlayer().getInventoryItem(map.getPlayer().getEquipments()));
     }
 }

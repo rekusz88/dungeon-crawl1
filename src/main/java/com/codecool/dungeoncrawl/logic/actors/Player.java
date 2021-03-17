@@ -7,13 +7,11 @@ import com.codecool.dungeoncrawl.logic.items.Equipments;
 import com.codecool.dungeoncrawl.logic.items.Usable;
 
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Player extends Actor {
-    private List<Equipments> equipments = new LinkedList<>();
-    private List<Usable> usables = new LinkedList<>();
+    private Map<Equipments, Integer> equipments = new LinkedHashMap<>();
+    private Map<Usable, Integer> usables = new LinkedHashMap<>();
 
 
     public Player(Cell cell) {
@@ -25,10 +23,10 @@ public class Player extends Actor {
         Item item = getCell().getItem();
         if (item != null) {
             if (item instanceof Equipments){
-                equipments.add((Equipments) item);
+                addToInventory(equipments, item);
             }
             else if (item instanceof Usable){
-                usables.add((Usable) item);
+                addToInventory(usables, item);
             }
             else if (item instanceof Booster) {
                 ((Booster) item).useBooster(this);
@@ -38,7 +36,33 @@ public class Player extends Actor {
 
     }
 
+    public <K> void addToInventory(Map<K, Integer> inventory, Item item){
+        K key = (K) item;
+        if (inventory.containsKey(key)){
+            inventory.replace(key, inventory.get(key) + 1);
+        }
+        else {
+            inventory.putIfAbsent(key, 1);
+        }
+    }
+
     public String getTileName() {
         return "player";
+    }
+
+    public Map<Equipments, Integer> getEquipments(){
+        return equipments;
+    }
+
+    public Map<Usable, Integer> getUsables(){
+        return usables;
+    }
+
+    public <K> String getInventoryItem(Map<K, Integer> inventory) {
+        StringBuilder sb = new StringBuilder();
+        for (K key : inventory.keySet()) {
+            sb.append(key + ": " + inventory.get(key) + "\n");
+        }
+        return sb.toString();
     }
 }
