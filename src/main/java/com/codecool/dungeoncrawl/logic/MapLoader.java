@@ -173,6 +173,7 @@ public class MapLoader {
                             break;
                         case 'Z':
                             cell.setType(CellType.KEY2);
+                            new Key(cell);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");

@@ -43,22 +43,14 @@ public class Main extends Application {
         Label health = new Label("Health: ");
         ui.add(health, 0, 0, 1, 1);
         ui.add(healthLabel, 1, 0, 1, 1);
-//        health.setStyle("-fx-text-fill: #ada099;");
 
         Label inventory1 = new Label("Inventory: ");
         ui.add(inventory1, 0, 1, 1, 1);
         ui.add(inventoryLabel, 0, 2, 1, 1);
-//        inventory1.setStyle("-fx-text-fill: #ada099;");
 
         Label inventory2 = new Label("Inventory: ");
         ui.add(inventory2, 0, 1, 1, 1);
         ui.add(inventoryLabel2, 0, 2, 1, 1);
-//        inventory2.setStyle("-fx-text-fill: #ada099;");
-
-//        healthLabel.setStyle("-fx-text-fill: #ada099;");
-
-//        ui.setStyle(" -fx-border-style: solid inside; -fx-border-width: 2;" +
-//                " -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color: #ada099;");
 
         BorderPane borderPane = new BorderPane();
 
@@ -135,6 +127,7 @@ public class Main extends Application {
                     break;
             }
             retainPlayer(playerBeforeDoor);
+
         }
     }
 
@@ -163,5 +156,6 @@ public class Main extends Application {
         map.getPlayer().setHealth(playerBeforeDoor.getHealth());
         map.getPlayer().setUsables(playerBeforeDoor.getUsables());
         map.getPlayer().setEquipments(playerBeforeDoor.getEquipments());
+        map.getPlayer().setKeys(playerBeforeDoor.getKeys());
     }
 }

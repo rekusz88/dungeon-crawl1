@@ -1,10 +1,7 @@
 package com.codecool.dungeoncrawl.logic.actors;
 
 import com.codecool.dungeoncrawl.logic.Cell;
-import com.codecool.dungeoncrawl.logic.items.Item;
-import com.codecool.dungeoncrawl.logic.items.Booster;
-import com.codecool.dungeoncrawl.logic.items.Equipments;
-import com.codecool.dungeoncrawl.logic.items.Usable;
+import com.codecool.dungeoncrawl.logic.items.*;
 
 
 import java.util.*;
@@ -24,16 +21,16 @@ public class Player extends Actor {
         if (item != null) {
             if (item instanceof Equipments){
                 addToInventory(equipments, item);
-            }
-            else if (item instanceof Usable){
+            } else if (item instanceof Usable){
                 addToInventory(usables, item);
-            }
-            else if (item instanceof Booster) {
+                if (item instanceof Key) {
+                    addKey();
+                }
+            } else if (item instanceof Booster) {
                 ((Booster) item).useBooster(this);
             }
             item.clearCell();
         }
-
     }
 
     public <K> void addToInventory(Map<K, Integer> inventory, Item item){

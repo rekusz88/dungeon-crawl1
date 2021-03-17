@@ -4,6 +4,7 @@ import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.Drawable;
 import com.codecool.dungeoncrawl.logic.items.Item;
+import com.codecool.dungeoncrawl.logic.items.Key;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
@@ -12,12 +13,14 @@ public abstract class Actor implements Drawable {
     public boolean reachedDoor;
     public String doorName;
     private Actor enemy;
+    public int keys;
 
 
     public Actor(Cell cell,int health,int attack) {
         this.health=health;
         this.attack=attack;
         this.cell = cell;
+        keys = 0;
         this.cell.setActor(this);
     }
 
@@ -36,21 +39,26 @@ public abstract class Actor implements Drawable {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
-        } else if (nextCell.isDoor(nextCell)) {
+        } else if (nextCell.isDoor(nextCell) && hasKey()) {
             checkWhichDoor(nextCell);
             reachedDoor = true;
-            System.out.println("door");
         } else if (nextCell.isFloor(nextCell)) {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
-        }else if (nextCell.isInventory(nextCell)){
+        } else if (nextCell.isInventory(nextCell)){
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
         }
    }
 
+    public boolean hasKey() {
+        if (this.getKeys() != 0) {
+            this.takeKey();
+            return true;
+        } else return false;
+    }
 
     public void fight(Actor enemy){
         while(!isDead(this) || !isDead(enemy)){
@@ -58,8 +66,7 @@ public abstract class Actor implements Drawable {
             strike(enemy,this);
             if(enemy.health <= 0){
                 break;
-            }
-            else if (this.health <= 0){
+            } else if (this.health <= 0){
                 System.out.println("You died!");    // could implement loosing screen
                 break;
             }
@@ -82,9 +89,15 @@ public abstract class Actor implements Drawable {
         }
     }
 
-    public void setHealth(int health){
-        this.health = health;
-    }
+    public void setHealth(int health){ this.health = health; }
+
+    public int getKeys(){ return this.keys; }
+
+    public void addKey() { this.keys += 1; }
+
+    public void takeKey() { this.keys -= 1; }
+
+    public void setKeys(int keys) { this.keys = keys; }
 
     private boolean isDead(Actor actor) {
         return actor.getHealth() <= 0;
@@ -93,7 +106,6 @@ public abstract class Actor implements Drawable {
     private void strike(Actor actor, Actor actor2) {
         actor2.health -= actor.attack;
     }
-
 
     public int getHealth() {
         return health;
