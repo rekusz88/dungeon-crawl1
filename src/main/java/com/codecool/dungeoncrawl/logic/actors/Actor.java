@@ -11,12 +11,21 @@ public abstract class Actor implements Drawable {
     public boolean reachedDoor;
     public String doorName;
 
+    private Actor enemy;
+
 
     public Actor(Cell cell,int health,int attack) {
         this.health=health;
         this.attack=attack;
         this.cell = cell;
         this.cell.setActor(this);
+    }
+
+    public boolean isEnemy(Cell nextCell){
+        return Npcs.npcList.stream().anyMatch(npcs -> {
+            enemy = npcs;
+            return enemy.equals(nextCell.getActor());
+        });
     }
 
     public void move(int dx, int dy) {
@@ -28,6 +37,30 @@ public abstract class Actor implements Drawable {
         } else if (nextCell.isDoor(nextCell)) {
             checkWhichDoor(nextCell);
             reachedDoor = true;
+            if(isEnemy(nextCell)){
+                fight(enemy);
+                cell.setActor(null);
+                nextCell.setActor(this);
+                cell = nextCell;
+            }
+            else if (nextCell.isFloor(nextCell)) {
+                cell.setActor(null);
+                nextCell.setActor(this);
+                cell = nextCell;
+            }
+    }
+
+    public void fight(Actor enemy){
+        while(!isDead(this) || !isDead(enemy)){
+            strike(this ,enemy);
+            strike(enemy,this);
+            if(enemy.health <= 0){
+                break;
+            }
+            else if (this.health <= 0){
+                System.out.println("You died!");    // could implement loosing screen
+                break;
+            }
         }
     }
 
@@ -50,6 +83,15 @@ public abstract class Actor implements Drawable {
     public void setHealth(int health){
         this.health = health;
     }
+
+    private boolean isDead(Actor actor) {
+        return actor.getHealth() <= 0;
+    }
+
+    private void strike(Actor actor, Actor actor2) {
+        actor2.health -= actor.attack;
+    }
+
 
     public int getHealth() {
         return health;
