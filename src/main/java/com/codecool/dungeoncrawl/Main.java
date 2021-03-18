@@ -46,8 +46,13 @@ public class Main extends Application {
         ui.setPadding(new Insets(10));
 
         ui.getStyleClass().add("ui");
-        Label health = new Label("Health: ");
+        Label health = new Label("Bravery: ");
         health.setStyle("-fx-font-size: 20px; -fx-padding: 10px");
+
+        Label alcohol = new Label("(alcohol)");
+        alcohol.setStyle("-fx-font-size: 15px; -fx-padding: 7px");
+        ui.add(alcohol, 0, 1, 1, 1);
+
         healthLabel.setStyle("-fx-font-size: 20px; -fx-padding: 10px");
         ui.add(health, 0, 0, 1, 1);
         ui.add(healthLabel, 1, 0, 1, 1);
@@ -55,39 +60,39 @@ public class Main extends Application {
         Label attack = new Label("Attack: ");
         attack.setStyle("-fx-font-size: 20px; -fx-padding: 10px");
         attackLabel.setStyle("-fx-font-size: 20px; -fx-padding: 10px");
-        ui.add(attack, 0, 1, 1, 1);
-        ui.add(attackLabel, 1, 1, 1, 1);
+        ui.add(attack, 0, 2, 1, 1);
+        ui.add(attackLabel, 1, 2, 1, 1);
 
         Label weapon = new Label("Weapons: ");
         weapon.setStyle("-fx-font-size: 20px; -fx-padding: 10px");
         weaponLabel.setStyle("-fx-font-size: 20px; -fx-padding: 10px");
-        ui.add(weapon, 0, 2, 1, 1);
-        ui.add(weaponLabel, 1, 2, 1, 1);
+        ui.add(weapon, 0, 3, 1, 1);
+        ui.add(weaponLabel, 1, 3, 1, 1);
 
         Label shield = new Label("Shield: ");
         shield.setStyle("-fx-font-size: 20px; -fx-padding: 10px");
-        shieldLabel.setStyle("-fx-font-size: 12px; -fx-padding: 10px");
-        ui.add(shield, 0, 3, 1, 1);
-        ui.add(shieldLabel, 0, 4, 2, 1);
+        shieldLabel.setStyle("-fx-font-size: 15px; -fx-padding: 7px");
+        ui.add(shield, 0, 4, 1, 1);
+        ui.add(shieldLabel, 0, 5, 2, 1);
 
         Label empty = new Label("");
-        ui.add(empty, 0, 5, 1, 1);
+        ui.add(empty, 0, 6, 1, 1);
 
         Label empty1 = new Label("");
-        ui.add(empty1, 0, 6, 1, 1);
+        ui.add(empty1, 0, 7, 1, 1);
 
         Label inventory1 = new Label("Keys ");
         inventory1.setStyle("-fx-font-size: 18px; -fx-padding: 3px");
-        ui.add(inventory1, 0, 7, 1, 1);
-        ui.add(inventoryLabel, 0, 8, 1, 1);
+        ui.add(inventory1, 0, 8, 1, 1);
+        ui.add(inventoryLabel, 0, 9, 1, 1);
 
         Label empty2 = new Label("");
-        ui.add(empty2, 0, 9, 1, 1);
+        ui.add(empty2, 0, 10, 1, 1);
 
         Label inventory2 = new Label("Inventory ");
         inventory2.setStyle("-fx-font-size: 18px; -fx-padding: 3px");
-        ui.add(inventory2, 0, 10, 1, 1);
-        ui.add(inventoryLabel2, 0, 11, 2, 1);
+        ui.add(inventory2, 0, 11, 1, 1);
+        ui.add(inventoryLabel2, 0, 12, 2, 1);
 
         BorderPane borderPane = new BorderPane();
 

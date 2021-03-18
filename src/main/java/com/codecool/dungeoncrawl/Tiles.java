@@ -34,7 +34,7 @@ public class Tiles {
         tileMap.put("player", new Tile(25, 0));
 
         tileMap.put("weapon", new Tile(0, 31));
-        tileMap.put("health", new Tile(26, 22));
+        tileMap.put("health", new Tile(25, 23));
 
         tileMap.put("key", new Tile(16, 23));
         tileMap.put("key2", new Tile(18, 23));
