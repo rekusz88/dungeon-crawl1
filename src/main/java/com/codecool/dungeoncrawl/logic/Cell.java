@@ -29,7 +29,8 @@ public class Cell implements Drawable {
     public boolean isDoor(Cell nextCell){
         return nextCell.getType().equals(CellType.INSIDE) || nextCell.getType().equals(CellType.TREASURE) ||
                 nextCell.getType().equals(CellType.BACK_INSIDE) || nextCell.getType().equals(CellType.INSIDE2) ||
-                nextCell.getType().equals(CellType.FINAL) || nextCell.getType().equals(CellType.OUTSIDE);
+                nextCell.getType().equals(CellType.FINAL) || nextCell.getType().equals(CellType.OUTSIDE) ||
+                nextCell.getType().equals(CellType.ENDING);
     }
 
     public boolean isInventory(Cell nextCell){

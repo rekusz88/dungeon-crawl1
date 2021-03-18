@@ -41,11 +41,11 @@ public class Tiles {
 
         tileMap.put("inside", new Tile(6, 10));
         tileMap.put("treasure", new Tile(6, 10));
-
         tileMap.put("back-inside", new Tile(8, 10));
         tileMap.put("inside2", new Tile(6, 10));
         tileMap.put("final", new Tile(6, 10));
         tileMap.put("outside", new Tile(6, 10));
+        tileMap.put("ending", new Tile(1, 0));
         tileMap.put("opened", new Tile(8, 10));
 
         tileMap.put("fire", new Tile(14, 10));

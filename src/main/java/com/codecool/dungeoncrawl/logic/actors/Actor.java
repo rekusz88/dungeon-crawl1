@@ -92,14 +92,17 @@ public abstract class Actor implements Drawable {
         } else if (nextCell.getType().equals(CellType.OUTSIDE)) {
             doorName = "door6";
         }
+        else if (nextCell.getType().equals(CellType.ENDING)) {
+            modal("CONGRATULATIONS");
+        }
     }
 
     public void modal(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(message);
         alert.setContentText("Would you like to start over?");
-        ButtonType restart = new ButtonType("hogy a viharba ne");
-        ButtonType exit = new ButtonType("nah", ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonType restart = new ButtonType("Hell yeah");
+        ButtonType exit = new ButtonType("Go home", ButtonBar.ButtonData.CANCEL_CLOSE);
         alert.getButtonTypes().setAll(restart, exit);
         alert.initStyle(StageStyle.UTILITY);
         Optional<ButtonType> result = alert.showAndWait();

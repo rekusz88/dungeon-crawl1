@@ -153,6 +153,9 @@ public class MapLoader {
                         case '!':
                             cell.setType(CellType.WINDOW2);
                             break;
+                        case 'G':
+                            cell.setType(CellType.ENDING);
+                            break;
 
                         case '@':
                             cell.setType(CellType.FLOOR);
