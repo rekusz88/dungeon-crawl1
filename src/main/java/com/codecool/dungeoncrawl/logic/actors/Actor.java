@@ -52,23 +52,26 @@ public abstract class Actor implements Drawable {
 
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        if (isEnemy(nextCell)) {
-            fight(enemy);
-            cell.setActor(null);
-            nextCell.setActor(this);
-            cell = nextCell;
-        } else if (nextCell.isDoor(nextCell) && hasKey()) {
-            checkWhichDoor(nextCell);
-            reachedDoor = true;
-        } else if (nextCell.isFloor(nextCell)) {
-            cell.setActor(null);
-            nextCell.setActor(this);
-            cell = nextCell;
-        } else if (nextCell.isInventory(nextCell)){
-            cell.setActor(null);
-            nextCell.setActor(this);
-            cell = nextCell;
+        if (isPlayer) {
+            if (isEnemy(nextCell)) {
+                fight(enemy);
+                cell.setActor(null);
+                nextCell.setActor(this);
+                cell = nextCell;
+            } else if (nextCell.isDoor(nextCell) && hasKey()) {
+                checkWhichDoor(nextCell);
+                reachedDoor = true;
+            } else if (nextCell.isFloor(nextCell)) {
+                cell.setActor(null);
+                nextCell.setActor(this);
+                cell = nextCell;
+            } else if (nextCell.isInventory(nextCell)){
+                cell.setActor(null);
+                nextCell.setActor(this);
+                cell = nextCell;
+            }
         }
+
    }
 
     public boolean hasKey() {
@@ -80,16 +83,17 @@ public abstract class Actor implements Drawable {
 
     public void fight(Actor enemy){
         while(!isDead(this) || !isDead(enemy)){
-            if (this.isPlayer) {
+
                 strike(this ,enemy);
                 strike(enemy,this);
                 if(enemy.health <= 0){
                     break;
                 } else if (this.health <= 0){
-                    modal("GAME OVER", "You died before making it out of the castle!");
+                    if (this.isPlayer) {
+                        modal("GAME OVER", "You died before making it out of the castle!");
+                    }
                     break;
                 }
-            } else break;
         }
     }
 
@@ -154,7 +158,7 @@ public abstract class Actor implements Drawable {
 
     public void setKeys(int keys) { this.keys = keys; }
 
-    private boolean isDead(Actor actor) {
+    public boolean isDead(Actor actor) {
         return actor.getHealth() <= 0;
     }
 

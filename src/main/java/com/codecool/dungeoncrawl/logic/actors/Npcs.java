@@ -21,11 +21,15 @@ public class Npcs extends Actor {
             Cell nextCell = cell.getNeighbor(dx, dy);
                 if(isEnemy(nextCell)){
                     fight(enemy);
-                    cell.setActor(null);
-                    nextCell.setActor(this);
-                    cell = nextCell;
-                }
-                else if (nextCell.isFloor(nextCell)) {
+                    if (this.isDead(this)) {
+                        cell.setActor(null);
+                    } else {
+                        cell.setActor(null);
+                        nextCell.setActor(this);
+                        cell = nextCell;
+                    }
+
+                } else if (nextCell.isFloor(nextCell)) {
                     cell.setActor(null);
                     nextCell.setActor(this);
                     cell = nextCell;

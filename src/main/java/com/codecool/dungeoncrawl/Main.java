@@ -22,7 +22,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class Main extends Application {
-    GameMap map = loadMap("/outside.txt");
+    GameMap map = loadMap("/inside.txt");
     final int CANVAS_WIDTH = 25;
     final int CANVAS_HEIGHT = 20;
     Canvas canvas = new Canvas(
@@ -117,7 +117,7 @@ public class Main extends Application {
 
     public void moveEnemy(){
         for(Npcs npc: Npcs.npcList){
-            if (npc instanceof Skeleton) {
+            if (npc instanceof Boss) {
                 npc.moveNPCs();
             }
         }
