@@ -13,16 +13,16 @@ import javafx.stage.StageStyle;
 import java.util.Optional;
 
 public abstract class Actor implements Drawable {
-    private Cell cell;
+    protected Cell cell;
     private int health;
     private int attack;
     public boolean reachedDoor;
     public String doorName;
-    private Actor enemy;
     public int keys;
     public int weapons;
     public int usedWeapons;
     public int friends;
+    protected Actor enemy;
 
 
     public Actor(Cell cell,int health,int attack) {
@@ -38,7 +38,13 @@ public abstract class Actor implements Drawable {
     }
 
     public boolean isEnemy(Cell nextCell){
-        return NPC.npcList.stream().anyMatch(npcs -> {
+        System.out.println(nextCell);
+       /* if ((enemy = nextCell.getActor()) instanceof Npcs) {
+            enemy = nextCell.getActor();
+        }
+        return enemy.equals(nextCell.getActor());*/
+
+        return Npcs.npcList.stream().anyMatch(npcs -> {
             enemy = npcs;
             return enemy.equals(nextCell.getActor());
         });

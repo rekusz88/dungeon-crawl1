@@ -1,5 +1,8 @@
 package com.codecool.dungeoncrawl;
 
+import com.codecool.dungeoncrawl.logic.actors.Actor;
+import com.codecool.dungeoncrawl.logic.actors.Boss;
+import com.codecool.dungeoncrawl.logic.actors.Npcs;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
@@ -18,6 +21,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.File;
+
+import java.util.ArrayList;
 
 public class Main extends Application {
     GameMap map = loadMap("/outside.txt");
@@ -42,7 +47,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         GridPane ui = new GridPane();
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
@@ -114,28 +118,40 @@ public class Main extends Application {
         stage = primaryStage;
     }
 
+    public void moveEnemy(){
+        for(Npcs npc: Npcs.npcList){
+            System.out.println(npc);
+            npc.moveNPCs();
+        }
+    }
+
+
     private void onKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case UP:
                 map.getPlayer().move(0, -1);
+                moveEnemy();
                 throwAwayUsedEquipment();
                 changeMap();
                 refresh();
                 break;
             case DOWN:
                 map.getPlayer().move(0, 1);
+                moveEnemy();
                 throwAwayUsedEquipment();
                 changeMap();
                 refresh();
                 break;
             case LEFT:
                 map.getPlayer().move(-1, 0);
+                moveEnemy();
                 throwAwayUsedEquipment();
                 changeMap();
                 refresh();
                 break;
             case RIGHT:
                 map.getPlayer().move(1,0);
+                moveEnemy();
                 throwAwayUsedEquipment();
                 changeMap();
                 refresh();
