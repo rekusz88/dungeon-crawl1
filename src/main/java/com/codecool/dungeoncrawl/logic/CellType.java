@@ -10,7 +10,6 @@ public enum CellType {
     OUTSIDE("outside"),
     TREASURE("treasure"),
     BACK_INSIDE("back-inside"),
-    INSIDE2("inside2"),
     FINAL("final"),
     OPENED("opened"),
     GRASS1("grass1"),
@@ -38,7 +37,6 @@ public enum CellType {
     WALL("wall"),
     WEAPON("weapon"),
     HEALTH("health"),
-    FIRE3("fire3"),
     ENDING("ending"),
     SHIELD("Hellfire Shield"),
     KEY("key");

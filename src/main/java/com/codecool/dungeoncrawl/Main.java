@@ -1,12 +1,9 @@
 package com.codecool.dungeoncrawl;
 
-import com.codecool.dungeoncrawl.logic.actors.Actor;
-import com.codecool.dungeoncrawl.logic.actors.Boss;
-import com.codecool.dungeoncrawl.logic.actors.Npcs;
+import com.codecool.dungeoncrawl.logic.actors.*;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
-import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.items.Equipments;
 import com.codecool.dungeoncrawl.logic.items.Usable;
 import javafx.application.Application;
@@ -120,8 +117,9 @@ public class Main extends Application {
 
     public void moveEnemy(){
         for(Npcs npc: Npcs.npcList){
-            System.out.println(npc);
-            npc.moveNPCs();
+            if (npc instanceof Skeleton) {
+                npc.moveNPCs();
+            }
         }
     }
 

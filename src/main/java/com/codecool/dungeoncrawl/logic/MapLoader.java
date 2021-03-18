@@ -178,7 +178,7 @@ public class MapLoader {
                             break;
 
                         case 'J':
-                            cell.setType(CellType.FIRE3);
+                            cell.setType(CellType.FLOOR);
                             new Fire(cell);
                             break;
 

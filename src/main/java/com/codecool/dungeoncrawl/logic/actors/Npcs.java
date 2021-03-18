@@ -13,17 +13,13 @@ public class Npcs extends Actor {
 
     public static ArrayList<Npcs> npcList = new ArrayList<>();
 
-    public int getRandomNum(int min, int max) {
-        Random random = new Random();
-        return random.nextInt(max - min) + min;
+    public int getRandomNum() {
+        return new Random().nextBoolean() ? -1 : 1;
     }
 
-
     public void moveNPCs(){
-            int dx = getRandomNum(-1, 1);
-            int dy = getRandomNum(-1, 1);
-        System.out.println(dx);
-        System.out.println(dy);
+            int dx = getRandomNum();
+            int dy = getRandomNum();
             Cell nextCell = cell.getNeighbor(dx, dy);
                 if(isEnemy(nextCell)){
                     fight(enemy);
@@ -37,7 +33,6 @@ public class Npcs extends Actor {
                     cell = nextCell;
                 }
         }
-
 
     @Override
     public String getTileName() {

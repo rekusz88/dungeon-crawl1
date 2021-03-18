@@ -80,16 +80,16 @@ public abstract class Actor implements Drawable {
 
     public void fight(Actor enemy){
         while(!isDead(this) || !isDead(enemy)){
-            strike(this ,enemy);
-            strike(enemy,this);
-            if(enemy.health <= 0){
-                break;
-            } else if (this.health <= 0){
-                if (this.isPlayer) {
+            if (this.isPlayer) {
+                strike(this ,enemy);
+                strike(enemy,this);
+                if(enemy.health <= 0){
+                    break;
+                } else if (this.health <= 0){
                     modal("GAME OVER", "You died before making it out of the castle!");
+                    break;
                 }
-                break;
-            }
+            } else break;
         }
     }
 
