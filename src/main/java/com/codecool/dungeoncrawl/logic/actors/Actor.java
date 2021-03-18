@@ -17,16 +17,18 @@ public abstract class Actor implements Drawable {
         this.cell.setActor(this);
     }
 
+
     public boolean isEnemy(Cell nextCell){
-        if ((enemy = nextCell.getActor()) instanceof Npcs) {
+        System.out.println(nextCell);
+       /* if ((enemy = nextCell.getActor()) instanceof Npcs) {
             enemy = nextCell.getActor();
         }
-        return enemy.equals(nextCell.getActor());
+        return enemy.equals(nextCell.getActor());*/
 
-        /*return Npcs.npcList.stream().anyMatch(npcs -> {
+        return Npcs.npcList.stream().anyMatch(npcs -> {
             enemy = npcs;
             return enemy.equals(nextCell.getActor());
-        });*/
+        });
     }
 
     public void move(int dx, int dy) {

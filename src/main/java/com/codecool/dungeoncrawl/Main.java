@@ -32,7 +32,7 @@ public class Main extends Application {
         launch(args);
     }
 
-    public static ArrayList<Npcs> NpcList = new ArrayList<>();
+
 
 
 
@@ -60,10 +60,19 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    public void moveEnemy(){
+        for(Npcs npc: Npcs.npcList){
+            System.out.println(npc);
+            npc.moveNPCs();
+        }
+    }
+
+
     private void onKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case UP:
                 map.getPlayer().move(0, -1);
+                moveEnemy();
                 refresh();
                 break;
             case DOWN:

@@ -20,23 +20,24 @@ public class Npcs extends Actor {
 
 
     public void moveNPCs(){
-        for(Actor npc : npcList){
             int dx = getRandomNum(-1, 1);
             int dy = getRandomNum(-1, 1);
+        System.out.println(dx);
+        System.out.println(dy);
             Cell nextCell = cell.getNeighbor(dx, dy);
                 if(isEnemy(nextCell)){
                     fight(enemy);
                     cell.setActor(null);
-                    nextCell.setActor(npc);
+                    nextCell.setActor(this);
                     cell = nextCell;
                 }
                 else if (nextCell.isFloor(nextCell)) {
                     cell.setActor(null);
-                    nextCell.setActor(npc);
+                    nextCell.setActor(this);
                     cell = nextCell;
                 }
         }
-    }
+
 
     @Override
     public String getTileName() {
@@ -45,5 +46,6 @@ public class Npcs extends Actor {
 
     public Npcs(Cell cell, int health, int attack) {
         super(cell, health, attack);
+        npcList.add(this);
     }
 }
