@@ -13,27 +13,35 @@ public class Npcs extends Actor {
 
     public static ArrayList<Npcs> npcList = new ArrayList<>();
 
-    public int getRandomNum() { return new Random().nextBoolean() ? -1 : 1; }
+    public int getRandomNum(int a, int b) { return new Random().nextBoolean() ? a : b; }
 
     public void moveNPCs(){
-            int dx = getRandomNum();
-            int dy = getRandomNum();
-            Cell nextCell = cell.getNeighbor(dx, dy);
-                if(isEnemy(nextCell)){
-                    fight(enemy);
-                    if (this.isDead(this)) {
-                        cell.setActor(null);
-                    } else {
-                        cell.setActor(null);
-                        nextCell.setActor(this);
-                        cell = nextCell;
-                    }
-
-                } else if (nextCell.isFloor(nextCell)) {
+            int dx = getRandomNum(1, -1);
+            int dy = getRandomNum(1, -1);
+            int x = cell.getX();
+            int y = cell.getY();
+            int changeCoord = getRandomNum(x, y);
+            Cell nextCell;
+            if (changeCoord == x) {
+                nextCell = cell.getNeighbor(0, dy);
+            } else {
+                nextCell = cell.getNeighbor(dx, 0);
+            }
+            if(isEnemy(nextCell)){
+                fight(enemy);
+                if (this.getHealth() <= 0) {
+                    cell.setActor(null);
+                } else {
                     cell.setActor(null);
                     nextCell.setActor(this);
                     cell = nextCell;
                 }
+
+            } else if (nextCell.isFloor(nextCell)) {
+                cell.setActor(null);
+                nextCell.setActor(this);
+                cell = nextCell;
+            }
         }
 
     @Override

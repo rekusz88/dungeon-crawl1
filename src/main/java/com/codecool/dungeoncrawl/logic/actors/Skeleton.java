@@ -4,7 +4,7 @@ import com.codecool.dungeoncrawl.logic.Cell;
 
 public class Skeleton extends Npcs {
     public Skeleton(Cell cell) {
-        super(cell,6,1);
+        super(cell,1,1);
     }
 
     @Override

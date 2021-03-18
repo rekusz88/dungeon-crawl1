@@ -71,7 +71,6 @@ public abstract class Actor implements Drawable {
                 cell = nextCell;
             }
         }
-
    }
 
     public boolean hasKey() {
@@ -82,20 +81,29 @@ public abstract class Actor implements Drawable {
     }
 
     public void fight(Actor enemy){
-        while(!isDead(this) || !isDead(enemy)){
-
-                strike(this ,enemy);
+        while(alive(this) || alive(enemy)){
+                strike(this, enemy);
                 strike(enemy,this);
                 if(enemy.health <= 0){
                     break;
                 } else if (this.health <= 0){
                     if (this.isPlayer) {
-                        modal("GAME OVER", "You died before making it out of the castle!");
+                        notification("GAME OVER", "You died before making it out of the castle!");
                     }
                     break;
                 }
         }
     }
+
+    private void strike(Actor actor, Actor enemy) {
+        enemy.health -= actor.attack;
+        if (actor.weapons > 0) {
+            actor.usedWeapons += 1;
+            actor.destroyWeapon();
+            actor.takeAttack(2);
+        }
+    }
+
 
     public void checkWhichDoor(Cell nextCell) {
         if (nextCell.getType().equals(CellType.INSIDE)) {
@@ -111,17 +119,17 @@ public abstract class Actor implements Drawable {
         }
         else if (nextCell.getType().equals(CellType.ENDING)) {
             if (savedFriends()) {
-                modal("GOOD ENDING","All of you successfully fled the castle! This party was wild.");
-            } else modal("BAD ENDING","You fled the castle, but left your friends to die. Time to sober up.");
+                notification("GOOD ENDING","All of you successfully fled the castle! This party was wild.");
+            } else notification("BAD ENDING","You fled the castle, but left your friends to die. Time to sober up.");
         }
     }
 
-    public void modal(String title, String message) {
+    public void notification(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
-        alert.setContentText(message + "Would you like to start over?");
-        ButtonType restart = new ButtonType("Hell yeah");
-        ButtonType exit = new ButtonType("Go home", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.setContentText(message);
+        ButtonType restart = new ButtonType("START OVER");
+        ButtonType exit = new ButtonType("GO HOME", ButtonBar.ButtonData.CANCEL_CLOSE);
         alert.getButtonTypes().setAll(restart, exit);
         alert.initStyle(StageStyle.UTILITY);
         Optional<ButtonType> result = alert.showAndWait();
@@ -154,21 +162,12 @@ public abstract class Actor implements Drawable {
 
     public void takeKey() { this.keys -= 1; }
 
-    public void takeWeapon() { this.weapons -= 1; }
+    public void destroyWeapon() { this.weapons -= 1; }
 
     public void setKeys(int keys) { this.keys = keys; }
 
-    public boolean isDead(Actor actor) {
-        return actor.getHealth() <= 0;
-    }
-
-    private void strike(Actor actor, Actor actor2) {
-        actor2.health -= actor.attack;
-        if (actor.weapons > 0) {
-            actor.usedWeapons += 1;
-            actor.takeWeapon();
-            actor.takeAttack(2);
-        }
+    public boolean alive(Actor actor) {
+        return actor.getHealth() > 0;
     }
 
     public int getHealth() { return health; }

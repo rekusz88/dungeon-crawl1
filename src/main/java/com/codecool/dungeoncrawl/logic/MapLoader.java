@@ -76,6 +76,9 @@ public class MapLoader {
                         case 'o':
                             cell.setType(CellType.OPENED);
                             break;
+                        case 'S':
+                            cell.setType(CellType.OPENED1);
+                            break;
 
                         case '-':
                             cell.setType(CellType.GRASS1);

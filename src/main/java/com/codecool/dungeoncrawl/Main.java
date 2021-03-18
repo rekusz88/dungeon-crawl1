@@ -4,8 +4,6 @@ import com.codecool.dungeoncrawl.logic.actors.*;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
-import com.codecool.dungeoncrawl.logic.items.Equipments;
-import com.codecool.dungeoncrawl.logic.items.Usable;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -19,10 +17,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.File;
 
-import java.util.ArrayList;
-
 public class Main extends Application {
-    GameMap map = loadMap("/inside.txt");
+    GameMap map = loadMap("/outside.txt");
     final int CANVAS_WIDTH = 25;
     final int CANVAS_HEIGHT = 20;
     Canvas canvas = new Canvas(
@@ -117,12 +113,11 @@ public class Main extends Application {
 
     public void moveEnemy(){
         for(Npcs npc: Npcs.npcList){
-            if (npc instanceof Boss) {
+            if (npc instanceof Skeleton) {
                 npc.moveNPCs();
             }
         }
     }
-
 
     private void onKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {

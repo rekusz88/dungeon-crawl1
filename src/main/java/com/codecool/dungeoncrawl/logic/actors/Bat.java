@@ -4,7 +4,7 @@ import com.codecool.dungeoncrawl.logic.Cell;
 
 public class Bat extends Npcs {
     public Bat(Cell cell){
-        super(cell,2,2);
+        super(cell,1,2);
     }
 
     @Override

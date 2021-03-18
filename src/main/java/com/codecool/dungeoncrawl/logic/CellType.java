@@ -12,6 +12,7 @@ public enum CellType {
     BACK_INSIDE("back-inside"),
     FINAL("final"),
     OPENED("opened"),
+    OPENED1("opened1"),
     GRASS1("grass1"),
     GRASS2("grass2"),
     GRASS3("grass3"),

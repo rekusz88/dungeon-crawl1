@@ -47,6 +47,7 @@ public class Tiles {
         tileMap.put("outside", new Tile(6, 10));
         tileMap.put("ending", new Tile(1, 0));
         tileMap.put("opened", new Tile(8, 10));
+        tileMap.put("opened1", new Tile(8, 10));
 
         tileMap.put("fire", new Tile(14, 10));
         tileMap.put("fire2", new Tile(15, 10));
@@ -75,7 +76,7 @@ public class Tiles {
 
         tileMap.put("skeleton", new Tile(26, 6));
         tileMap.put("Bat", new Tile(26,8));
-        tileMap.put("Boss",new Tile(24,7));
+        tileMap.put("Boss",new Tile(25,8));
 
         tileMap.put("pistike", new Tile(30, 3));
         tileMap.put("marcsi", new Tile(31, 3));
