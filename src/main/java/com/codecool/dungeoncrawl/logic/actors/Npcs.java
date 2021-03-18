@@ -13,9 +13,7 @@ public class Npcs extends Actor {
 
     public static ArrayList<Npcs> npcList = new ArrayList<>();
 
-    public int getRandomNum() {
-        return new Random().nextBoolean() ? -1 : 1;
-    }
+    public int getRandomNum() { return new Random().nextBoolean() ? -1 : 1; }
 
     public void moveNPCs(){
             int dx = getRandomNum();
