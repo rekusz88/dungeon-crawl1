@@ -233,6 +233,7 @@ public class Main extends Application {
         map.getPlayer().setUsables(playerBeforeDoor.getUsables());
         map.getPlayer().setEquipments(playerBeforeDoor.getEquipments());
         map.getPlayer().setKeys(playerBeforeDoor.getKeys());
+        map.getPlayer().setFriends(playerBeforeDoor.getFriends());
         map.getPlayer().setShieldStatus(playerBeforeDoor.getShieldStatus());
     }
 }

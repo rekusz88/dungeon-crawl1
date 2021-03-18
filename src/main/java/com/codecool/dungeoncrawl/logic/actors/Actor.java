@@ -130,6 +130,10 @@ public abstract class Actor implements Drawable {
 
     public int getKeys(){ return this.keys; }
 
+    public void setFriends(int friends){ this.friends = friends; }
+
+    public int getFriends(){ return this.friends; }
+
     public int getWeapons(){ return this.weapons; }
 
     public void addKey() { this.keys += 1; }
