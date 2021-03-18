@@ -4,10 +4,10 @@ import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.Drawable;
 
 public abstract class Actor implements Drawable {
-    private Cell cell;
+    protected Cell cell;
     private int health;
     private int attack;
-    private Actor enemy;
+    protected Actor enemy;
 
 
     public Actor(Cell cell,int health,int attack) {
@@ -18,10 +18,15 @@ public abstract class Actor implements Drawable {
     }
 
     public boolean isEnemy(Cell nextCell){
-        return Npcs.npcList.stream().anyMatch(npcs -> {
+        if ((enemy = nextCell.getActor()) instanceof Npcs) {
+            enemy = nextCell.getActor();
+        }
+        return enemy.equals(nextCell.getActor());
+
+        /*return Npcs.npcList.stream().anyMatch(npcs -> {
             enemy = npcs;
             return enemy.equals(nextCell.getActor());
-        });
+        });*/
     }
 
     public void move(int dx, int dy) {

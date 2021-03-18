@@ -1,5 +1,8 @@
 package com.codecool.dungeoncrawl;
 
+import com.codecool.dungeoncrawl.logic.actors.Actor;
+import com.codecool.dungeoncrawl.logic.actors.Boss;
+import com.codecool.dungeoncrawl.logic.actors.Npcs;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
@@ -15,6 +18,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class Main extends Application {
     GameMap map = MapLoader.loadMap();
     Canvas canvas = new Canvas(
@@ -26,6 +31,11 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+    public static ArrayList<Npcs> NpcList = new ArrayList<>();
+
+
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -86,4 +96,6 @@ public class Main extends Application {
         }
         healthLabel.setText("" + map.getPlayer().getHealth());
     }
+
+
 }
