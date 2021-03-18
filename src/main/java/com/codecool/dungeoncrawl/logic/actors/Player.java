@@ -23,9 +23,10 @@ public class Player extends Actor {
                 addToInventory(equipments, item);
                 if (item instanceof Weapon) {
                     addWeapon();
-                }
-                if (item instanceof HellFireShield) {
+                } else if (item instanceof HellFireShield) {
                     shield = "active (attack +1)";
+                } else if (item instanceof Friend1 || item instanceof Friend2 || item instanceof Friend3) {
+                    friends += 1;
                 }
             } else if (item instanceof Usable){
                 addToInventory(usables, item);

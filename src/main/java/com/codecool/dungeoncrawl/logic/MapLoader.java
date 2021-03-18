@@ -67,9 +67,6 @@ public class MapLoader {
                         case 'O':
                             cell.setType(CellType.BACK_INSIDE);
                             break;
-                        case 'E':
-                            cell.setType(CellType.INSIDE2);
-                            break;
                         case 'Y':
                             cell.setType(CellType.FINAL);
                             break;

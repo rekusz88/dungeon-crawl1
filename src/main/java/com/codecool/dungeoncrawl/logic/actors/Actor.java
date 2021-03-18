@@ -22,14 +22,19 @@ public abstract class Actor implements Drawable {
     public int keys;
     public int weapons;
     public int usedWeapons;
+    public int friends;
 
 
     public Actor(Cell cell,int health,int attack) {
         this.health=health;
         this.attack=attack;
         this.cell = cell;
-        weapons = keys = usedWeapons = 0;
+        weapons = keys = usedWeapons = friends = 0;
         this.cell.setActor(this);
+    }
+
+    public boolean savedFriends() {
+        return friends == 3;
     }
 
     public boolean isEnemy(Cell nextCell){
@@ -74,7 +79,7 @@ public abstract class Actor implements Drawable {
             if(enemy.health <= 0){
                 break;
             } else if (this.health <= 0){
-                modal("GAME OVER");
+                modal("GAME OVER", "You died before making it out of the castle!");
                 break;
             }
         }
@@ -87,22 +92,22 @@ public abstract class Actor implements Drawable {
             doorName = "door2";
         } else if (nextCell.getType().equals(CellType.BACK_INSIDE)) {
             doorName = "door3";
-        } else if (nextCell.getType().equals(CellType.INSIDE2)) {
-            doorName = "door4";
         } else if (nextCell.getType().equals(CellType.FINAL)) {
-            doorName = "door5";
+            doorName = "door4";
         } else if (nextCell.getType().equals(CellType.OUTSIDE)) {
-            doorName = "door6";
+            doorName = "door5";
         }
         else if (nextCell.getType().equals(CellType.ENDING)) {
-            modal("CONGRATULATIONS");
+            if (savedFriends()) {
+                modal("GOOD ENDING","All of you successfully fled the castle! This party was wild.");
+            } else modal("BAD ENDING","You fled the castle, but left your friends to die. Time to sober up.");
         }
     }
 
-    public void modal(String message) {
+    public void modal(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(message);
-        alert.setContentText("Would you like to start over?");
+        alert.setTitle(title);
+        alert.setContentText(message + "Would you like to start over?");
         ButtonType restart = new ButtonType("Hell yeah");
         ButtonType exit = new ButtonType("Go home", ButtonBar.ButtonData.CANCEL_CLOSE);
         alert.getButtonTypes().setAll(restart, exit);
