@@ -20,9 +20,9 @@ public class Npcs extends Actor {
             int dy = getRandomNum(1, -1);
             int x = cell.getX();
             int y = cell.getY();
-            int changeCoord = getRandomNum(x, y);
+            int XorY = getRandomNum(x, y);
             Cell nextCell;
-            if (changeCoord == x) {
+            if (XorY == x) {
                 nextCell = cell.getNeighbor(0, dy);
             } else {
                 nextCell = cell.getNeighbor(dx, 0);

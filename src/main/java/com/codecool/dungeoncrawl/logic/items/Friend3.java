@@ -5,7 +5,7 @@ import com.codecool.dungeoncrawl.logic.Cell;
 public class Friend3 extends Equipments {
     public Friend3(Cell cell) {
         super(cell);
-        this.setStrength(10);
+        this.setStrength(0);
     }
 
     @Override
