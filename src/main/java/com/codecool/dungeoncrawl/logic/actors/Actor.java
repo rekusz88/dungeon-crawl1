@@ -20,13 +20,15 @@ public abstract class Actor implements Drawable {
     public String doorName;
     private Actor enemy;
     public int keys;
+    public int weapons;
+    public int usedWeapons;
 
 
     public Actor(Cell cell,int health,int attack) {
         this.health=health;
         this.attack=attack;
         this.cell = cell;
-        keys = 0;
+        weapons = keys = usedWeapons = 0;
         this.cell.setActor(this);
     }
 
@@ -123,9 +125,15 @@ public abstract class Actor implements Drawable {
 
     public int getKeys(){ return this.keys; }
 
+    public int getWeapons(){ return this.weapons; }
+
     public void addKey() { this.keys += 1; }
 
+    public void addWeapon() { this.weapons += 1; }
+
     public void takeKey() { this.keys -= 1; }
+
+    public void takeWeapon() { this.weapons -= 1; }
 
     public void setKeys(int keys) { this.keys = keys; }
 
@@ -135,21 +143,32 @@ public abstract class Actor implements Drawable {
 
     private void strike(Actor actor, Actor actor2) {
         actor2.health -= actor.attack;
+        if (actor.weapons > 0) {
+            actor.usedWeapons += 1;
+            actor.takeWeapon();
+            actor.takeAttack(2);
+        }
     }
 
-    public int getHealth() {
-        return health;
-    }
+    public int getHealth() { return health; }
 
-    public Cell getCell() {
-        return cell;
-    }
+    public int getAttack() { return attack; }
 
-    public int getX() {
-        return cell.getX();
-    }
+    public int getUsedWeapons() { return usedWeapons; }
 
-    public int getY() {
-        return cell.getY();
-    }
+    public void setAttack(int attack){ this.attack = attack; }
+
+    public void setWeapons(int weapons){ this.weapons = weapons; }
+
+    public void setUsedWeapons(int usedWeapon){ this.usedWeapons = usedWeapon; }
+
+    public void addAttack(int attack){ this.attack += attack; }
+
+    public void takeAttack(int attack){ this.attack -= attack; }
+
+    public Cell getCell() { return cell; }
+
+    public int getX() { return cell.getX(); }
+
+    public int getY() { return cell.getY(); }
 }

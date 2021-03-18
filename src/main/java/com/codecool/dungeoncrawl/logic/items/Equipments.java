@@ -6,11 +6,10 @@ public abstract class Equipments extends Item {
     private int attack;
     private int health;
     private int strength;
+    public boolean used;
 
 
-    public Equipments(Cell cell){
-        super(cell);
-    }
+    public Equipments(Cell cell){ super(cell); used = false; }
 
     public int getAttack(){
         return attack;
@@ -36,10 +35,9 @@ public abstract class Equipments extends Item {
         this.strength = strength;
     }
 
-    public void useEquipments(){
+    public void setUsed(boolean use) { this.used = use; }
 
-
-    }
+    public boolean getUsed() { return used; }
 
 
 }

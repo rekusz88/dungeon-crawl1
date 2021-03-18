@@ -4,6 +4,8 @@ import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 import com.codecool.dungeoncrawl.logic.actors.Player;
+import com.codecool.dungeoncrawl.logic.items.Equipments;
+import com.codecool.dungeoncrawl.logic.items.Usable;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -26,6 +28,9 @@ public class Main extends Application {
     Label healthLabel = new Label();
     Label inventoryLabel = new Label();
     Label inventoryLabel2 = new Label();
+    Label attackLabel = new Label();
+    Label weaponLabel = new Label();
+    Label shieldLabel = new Label();
     private static Stage stage;
     public static Stage getStage() { return stage; }
 
@@ -47,15 +52,42 @@ public class Main extends Application {
         ui.add(health, 0, 0, 1, 1);
         ui.add(healthLabel, 1, 0, 1, 1);
 
+        Label attack = new Label("Attack: ");
+        attack.setStyle("-fx-font-size: 20px; -fx-padding: 10px");
+        attackLabel.setStyle("-fx-font-size: 20px; -fx-padding: 10px");
+        ui.add(attack, 0, 1, 1, 1);
+        ui.add(attackLabel, 1, 1, 1, 1);
+
+        Label weapon = new Label("Weapons: ");
+        weapon.setStyle("-fx-font-size: 20px; -fx-padding: 10px");
+        weaponLabel.setStyle("-fx-font-size: 20px; -fx-padding: 10px");
+        ui.add(weapon, 0, 2, 1, 1);
+        ui.add(weaponLabel, 1, 2, 1, 1);
+
+        Label shield = new Label("Shield: ");
+        shield.setStyle("-fx-font-size: 20px; -fx-padding: 10px");
+        shieldLabel.setStyle("-fx-font-size: 12px; -fx-padding: 10px");
+        ui.add(shield, 0, 3, 1, 1);
+        ui.add(shieldLabel, 0, 4, 2, 1);
+
+        Label empty = new Label("");
+        ui.add(empty, 0, 5, 1, 1);
+
+        Label empty1 = new Label("");
+        ui.add(empty1, 0, 6, 1, 1);
+
         Label inventory1 = new Label("Keys ");
         inventory1.setStyle("-fx-font-size: 18px; -fx-padding: 3px");
-        ui.add(inventory1, 0, 1, 1, 1);
-        ui.add(inventoryLabel, 0, 2, 1, 1);
+        ui.add(inventory1, 0, 7, 1, 1);
+        ui.add(inventoryLabel, 0, 8, 1, 1);
+
+        Label empty2 = new Label("");
+        ui.add(empty2, 0, 9, 1, 1);
 
         Label inventory2 = new Label("Inventory ");
         inventory2.setStyle("-fx-font-size: 18px; -fx-padding: 3px");
-        ui.add(inventory2, 0, 5, 1, 1);
-        ui.add(inventoryLabel2, 0, 6, 1, 1);
+        ui.add(inventory2, 0, 10, 1, 1);
+        ui.add(inventoryLabel2, 0, 11, 2, 1);
 
         BorderPane borderPane = new BorderPane();
 
@@ -79,21 +111,25 @@ public class Main extends Application {
         switch (keyEvent.getCode()) {
             case UP:
                 map.getPlayer().move(0, -1);
+                throwAwayUsedEquipment();
                 changeMap();
                 refresh();
                 break;
             case DOWN:
                 map.getPlayer().move(0, 1);
+                throwAwayUsedEquipment();
                 changeMap();
                 refresh();
                 break;
             case LEFT:
                 map.getPlayer().move(-1, 0);
+                throwAwayUsedEquipment();
                 changeMap();
                 refresh();
                 break;
             case RIGHT:
                 map.getPlayer().move(1,0);
+                throwAwayUsedEquipment();
                 changeMap();
                 refresh();
                 break;
@@ -143,6 +179,12 @@ public class Main extends Application {
         }
     }
 
+    public void throwAwayUsedEquipment() {
+        for (int i = 0; i < map.getPlayer().getUsedWeapons(); i++) {
+            map.getPlayer().takeFromEquipments("weapon");
+            map.getPlayer().setUsedWeapons(map.getPlayer().getUsedWeapons() - 1);
+        }
+    }
 
     private void refresh() {
         context.setFill(Color.BLACK);
@@ -160,14 +202,21 @@ public class Main extends Application {
             }
         }
         healthLabel.setText("" + map.getPlayer().getHealth());
+        attackLabel.setText("" + map.getPlayer().getAttack());
+        weaponLabel.setText("" + map.getPlayer().getWeapons());
+        shieldLabel.setText("" + map.getPlayer().getShieldStatus());
         inventoryLabel.setText("" + map.getPlayer().getInventoryItem(map.getPlayer().getUsables()));
         inventoryLabel2.setText("\n" +"" + map.getPlayer().getInventoryItem(map.getPlayer().getEquipments()));
     }
 
     public void retainPlayer(Player playerBeforeDoor) {
         map.getPlayer().setHealth(playerBeforeDoor.getHealth());
+        map.getPlayer().setAttack(playerBeforeDoor.getAttack());
+        map.getPlayer().setWeapons(playerBeforeDoor.getWeapons());
+        map.getPlayer().setUsedWeapons(playerBeforeDoor.getWeapons());
         map.getPlayer().setUsables(playerBeforeDoor.getUsables());
         map.getPlayer().setEquipments(playerBeforeDoor.getEquipments());
         map.getPlayer().setKeys(playerBeforeDoor.getKeys());
+        map.getPlayer().setShieldStatus(playerBeforeDoor.getShieldStatus());
     }
 }

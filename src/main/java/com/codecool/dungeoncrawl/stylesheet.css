@@ -6,7 +6,6 @@
 .label {
     -fx-text-fill: #ada099;
     -fx-font-size: 15px;
-    -fx-wrap-text: no;
 }
 
 .ui {
