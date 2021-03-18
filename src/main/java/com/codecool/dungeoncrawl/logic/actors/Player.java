@@ -9,18 +9,24 @@ import java.util.*;
 public class Player extends Actor {
     private Map<Equipments, Integer> equipments = new LinkedHashMap<>();
     private Map<Usable, Integer> usables = new LinkedHashMap<>();
+    private String shield;
 
 
-    public Player(Cell cell) {
-        super(cell,10,5);
-    }
+    public Player(Cell cell) { super(cell,10,1); shield = "none"; }
 
 
     public void pickUpItem(){
         Item item = getCell().getItem();
         if (item != null) {
             if (item instanceof Equipments){
+                addAttack(((Equipments) item).getStrength());
                 addToInventory(equipments, item);
+                if (item instanceof Weapon) {
+                    addWeapon();
+                }
+                if (item instanceof HellFireShield) {
+                    shield = "active (attack +1)";
+                }
             } else if (item instanceof Usable){
                 addToInventory(usables, item);
                 if (item instanceof Key) {
@@ -44,15 +50,29 @@ public class Player extends Actor {
     }
 
     public void takeFromInventory(String item) {
-//        Iterator<Map.Entry<Usable,Integer>> iter = usables.entrySet().iterator();
-//        while (iter.hasNext()) {
-//            Map.Entry<Usable,Integer> entry = iter.next();
-//            if(item.equalsIgnoreCase(String.valueOf(entry.getKey()))){
-//                iter.remove();
-//                break;
-//            }
-//        }
-        usables.entrySet().removeIf(entry -> item.equalsIgnoreCase(String.valueOf(entry.getKey())));
+        Iterator<Map.Entry<Usable,Integer>> iter = usables.entrySet().iterator();
+        while (iter.hasNext()) {
+            Map.Entry<Usable,Integer> entry = iter.next();
+            if(item.equalsIgnoreCase(String.valueOf(entry.getKey()))){
+                iter.remove();
+                break;
+            }
+        }
+//        takes all of them
+//        usables.entrySet().removeIf(entry -> item.equalsIgnoreCase(String.valueOf(entry.getKey())));
+    }
+
+    public void takeFromEquipments(String item) {
+        Iterator<Map.Entry<Equipments,Integer>> iter = equipments.entrySet().iterator();
+        while (iter.hasNext()) {
+            Map.Entry<Equipments,Integer> entry = iter.next();
+            if(item.equalsIgnoreCase(String.valueOf(entry.getKey()))){
+                iter.remove();
+                break;
+            }
+        }
+//        takes all of them
+//        usables.entrySet().removeIf(entry -> item.equalsIgnoreCase(String.valueOf(entry.getKey())));
     }
 
     public String getTileName() {
@@ -66,6 +86,10 @@ public class Player extends Actor {
     public Map<Usable, Integer> getUsables(){
         return usables;
     }
+
+    public String getShieldStatus() { return shield; }
+
+    public void setShieldStatus(String shield) { this.shield = shield; }
 
     public void setUsables(Map<Usable, Integer> usables){
         this.usables = usables;

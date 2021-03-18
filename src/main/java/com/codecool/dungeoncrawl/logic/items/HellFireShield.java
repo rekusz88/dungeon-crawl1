@@ -5,7 +5,7 @@ import com.codecool.dungeoncrawl.logic.Cell;
 public class HellFireShield extends Equipments {
     public HellFireShield(Cell cell) {
         super(cell);
-        this.setStrength(10);
+        this.setStrength(1);
     }
 
     @Override
