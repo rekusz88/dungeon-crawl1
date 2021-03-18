@@ -2,7 +2,8 @@
 /shelf/
 /workspace.xml
 # Datasource local storage ignored files
-/../../../../../../../../../../:\Users\Zanghetsu\Desktop\CodeCool\CodecoolRepo\Projects\OOP\dungeon-crawl-1-java-Karcub\.idea/dataSources/
+/dataSources/
+/../../../../../../../../:\Users\pocahontas\Documents\OOP\weekTHREE\dungeon-crawl-1-java-Karcub\.idea/dataSources/
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/

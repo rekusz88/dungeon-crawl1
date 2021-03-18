@@ -1,0 +1,22 @@
+.root{
+    -fx-background-color: #472d3c;
+    -fx-font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.label {
+    -fx-text-fill: #ada099;
+    -fx-font-size: 15px;
+}
+
+.ui {
+    -fx-border-style: solid inside; -fx-border-width: 2;
+    -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color: #ada099;
+    -fx-background-color: #5a354b;
+    -fx-padding: 3px;
+}
+
+.root {
+    -fx-glass-color: rgba(95, 158, 160, 0.9);
+}
+
+
