@@ -23,6 +23,7 @@ public abstract class Actor implements Drawable {
     public int usedWeapons;
     public int friends;
     protected Actor enemy;
+    public boolean isPlayer = false;
 
 
     public Actor(Cell cell,int health,int attack) {
@@ -38,7 +39,6 @@ public abstract class Actor implements Drawable {
     }
 
     public boolean isEnemy(Cell nextCell){
-        System.out.println(nextCell);
        /* if ((enemy = nextCell.getActor()) instanceof Npcs) {
             enemy = nextCell.getActor();
         }
@@ -85,7 +85,9 @@ public abstract class Actor implements Drawable {
             if(enemy.health <= 0){
                 break;
             } else if (this.health <= 0){
-                modal("GAME OVER", "You died before making it out of the castle!");
+                if (this.isPlayer) {
+                    modal("GAME OVER", "You died before making it out of the castle!");
+                }
                 break;
             }
         }

@@ -12,7 +12,7 @@ public class Player extends Actor {
     private String shield;
 
 
-    public Player(Cell cell) { super(cell,10,1); shield = "none"; }
+    public Player(Cell cell) { super(cell,10,1); shield = "none"; isPlayer = true; }
 
 
     public void pickUpItem(){
