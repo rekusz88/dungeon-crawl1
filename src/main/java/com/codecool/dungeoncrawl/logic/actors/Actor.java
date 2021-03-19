@@ -4,12 +4,18 @@ import com.codecool.dungeoncrawl.Main;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.Drawable;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
+
 import java.util.Optional;
 
 public abstract class Actor implements Drawable {
@@ -81,6 +87,12 @@ public abstract class Actor implements Drawable {
     }
 
     public void fight(Actor enemy){
+        if (this.isPlayer && enemy instanceof Skeleton) {
+            shakeStage(3);
+        }
+        if (this.isPlayer && enemy instanceof OPBoss) {
+            shakeStage(100);
+        }
         while(alive(this) || alive(enemy)){
                 strike(this, enemy);
                 strike(enemy,this);
@@ -104,6 +116,45 @@ public abstract class Actor implements Drawable {
         }
     }
 
+    int x = 0;
+    int y = 0;
+
+    public void shakeStage(int duration) {
+        Timeline timelineX = new Timeline(new KeyFrame(Duration.seconds(0.1), new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent t) {
+                if (x == 0) {
+                    Main.getStage().setX(Main.getStage().getX() + 10);
+                    x = 1;
+                } else {
+                    Main.getStage().setX(Main.getStage().getX() - 10);
+                    x = 0;
+                }
+            }
+        }));
+
+        timelineX.setCycleCount(duration);
+        timelineX.setAutoReverse(false);
+        timelineX.play();
+
+
+        Timeline timelineY = new Timeline(new KeyFrame(Duration.seconds(0.1), new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent t) {
+                if (y == 0) {
+                    Main.getStage().setY(Main.getStage().getY() + 10);
+                    y = 1;
+                } else {
+                    Main.getStage().setY(Main.getStage().getY() - 10);
+                    y = 0;
+                }
+            }
+        }));
+
+        timelineY.setCycleCount(duration);
+        timelineY.setAutoReverse(false);
+        timelineY.play();
+    }
 
     public void checkWhichDoor(Cell nextCell) {
         if (nextCell.getType().equals(CellType.INSIDE)) {

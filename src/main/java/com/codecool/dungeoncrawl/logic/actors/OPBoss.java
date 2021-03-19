@@ -4,7 +4,7 @@ import com.codecool.dungeoncrawl.logic.Cell;
 
 public class OPBoss extends Npcs {
     public OPBoss(Cell cell){
-        super(cell,45,35);
+        super(cell,20,20);
     }
 
     @Override
