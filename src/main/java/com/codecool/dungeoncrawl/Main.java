@@ -17,6 +17,13 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.File;
 
+import com.codecool.dungeoncrawl.dao.GameDatabaseManager;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+
+import java.sql.SQLException;
+
 public class Main extends Application {
     GameMap map = loadMap("/outside.txt");
     final int CANVAS_WIDTH = 25;
@@ -32,6 +39,8 @@ public class Main extends Application {
     Label weaponLabel = new Label();
     Label shieldLabel = new Label();
     private static Stage stage;
+    GameDatabaseManager dbManager;
+
     public static Stage getStage() { return stage; }
 
     public static void main(String[] args) {
@@ -40,6 +49,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        setupDbManager();
         GridPane ui = new GridPane();
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
@@ -119,6 +129,16 @@ public class Main extends Application {
         }
     }
 
+    private void onKeyReleased(KeyEvent keyEvent) {
+        KeyCombination exitCombinationMac = new KeyCodeCombination(KeyCode.W, KeyCombination.SHORTCUT_DOWN);
+        KeyCombination exitCombinationWin = new KeyCodeCombination(KeyCode.F4, KeyCombination.ALT_DOWN);
+        if (exitCombinationMac.match(keyEvent)
+                || exitCombinationWin.match(keyEvent)
+                || keyEvent.getCode() == KeyCode.ESCAPE) {
+            exit();
+        }
+    }
+
     private void onKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case UP:
@@ -153,7 +173,29 @@ public class Main extends Application {
                 map.getPlayer().pickUpItem();
                 refresh();
                 break;
+            case S:
+                Player player = map.getPlayer();
+                dbManager.savePlayer(player);
+                break;
         }
+    }
+
+    private void setupDbManager() {
+        dbManager = new GameDatabaseManager();
+        try {
+            dbManager.setup();
+        } catch (SQLException ex) {
+            System.out.println("Cannot connect to database.");
+        }
+    }
+
+    private void exit() {
+        try {
+            stop();
+        } catch (Exception e) {
+            System.exit(1);
+        }
+        System.exit(0);
     }
 
     public GameMap loadMap(String fileName) {
