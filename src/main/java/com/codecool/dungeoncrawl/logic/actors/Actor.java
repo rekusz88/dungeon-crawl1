@@ -18,7 +18,7 @@ import javafx.util.Duration;
 
 import java.util.Optional;
 
-public abstract class Actor implements Drawable {
+public abstract class Actor implements Drawable  {
     protected Cell cell;
     private int health;
     private int attack;
@@ -30,6 +30,7 @@ public abstract class Actor implements Drawable {
     public int friends;
     protected Actor enemy;
     public boolean isPlayer = false;
+
 
 
     public Actor(Cell cell,int health,int attack) {
