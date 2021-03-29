@@ -18,11 +18,11 @@ public class Npcs extends Actor {
     public void moveNPCs(){
             int dx = getRandomNum(1, -1);
             int dy = getRandomNum(1, -1);
-            int x = cell.getX();
-            int y = cell.getY();
-            int XorY = getRandomNum(x, y);
+            int xBeforeMove = cell.getX();
+            int yBeforeMove = cell.getY();
+            int XorY = getRandomNum(xBeforeMove, yBeforeMove);
             Cell nextCell;
-            if (XorY == x) {
+            if (XorY == xBeforeMove) {
                 nextCell = cell.getNeighbor(0, dy);
             } else {
                 nextCell = cell.getNeighbor(dx, 0);
