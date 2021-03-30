@@ -5,11 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnector {
-    private final String db_url = "";
-    private final String db_user_name = "";
-    private final String db_password = "";
-
     private void connect(){
+        String db_url = "jdbc:postgresql://localhost:5432/postgres";
+        String db_user_name = "postgres";
+        String db_password = "Sx147DEs'";
+
         try(Connection connection = DriverManager.getConnection(db_url, db_user_name, db_password)){
             if (connection != null) {
                 System.out.println("Connection done!");
